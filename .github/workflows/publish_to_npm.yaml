@@ -53,27 +53,10 @@ jobs:
       - name: Audit signatures
         run: npm audit signatures
 
-      # - name: Verify npm token
-      #   run: |
-      #     if [ -z "$NODE_AUTH_TOKEN" ]; then
-      #       echo "NODE_AUTH_TOKEN is not set!"
-      #       exit 1
-      #     else
-      #       echo "NODE_AUTH_TOKEN is set."
-      #     fi
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      # - name: Check npm token (Partial)
-      #   run: |
-      #     echo "NODE_AUTH_TOKEN (partial hash): ${NODE_AUTH_TOKEN:0:5}*****"
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: Publish to npm
-        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public
 
       - name: Display Published Package Info
         run: |
