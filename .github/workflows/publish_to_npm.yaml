@@ -44,7 +44,11 @@ jobs:
           registry-url: 'https://registry.npmjs.org/'
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install
+
+          # Ensure is-ci and husky are installed to avoid postinstall errors
+          npm install is-ci husky --save-dev
 
       - name: Update Version in package.json
         run: |
