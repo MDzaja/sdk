@@ -41,24 +41,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          registry-url: 'https://registry.npmjs.org/'
-
-      - name: Install dependencies
-        run: |
-          npm install --no-optional  # Avoid optional deps like husky causing issues
-
-      - name: Skip Postinstall Scripts
-        run: |
-          npm config set ignore-scripts true
-          npm install
-          npm config set ignore-scripts false
 
       - name: Update Version in package.json
         run: |
           npm version $PACKAGE_VERSION --no-git-tag-version
 
+      - name: Install dependencies
+        run: npm ci
+
       - name: Build the package
         run: npm run build
+
+      - name: Audit signatures
+        run: npm audit signatures
 
       - name: Publish to npm
         run: npm publish --access public
