@@ -20,5 +20,5 @@ cd packages/typescript
 yarn build
 yarn link
 
-cd ../../examples/typescript/exec-command
-yarn link @daytona/sdk
+# cd ../../examples/typescript/exec-command
+# yarn link @daytona/sdk
