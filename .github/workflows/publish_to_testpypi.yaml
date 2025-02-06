@@ -56,7 +56,7 @@ jobs:
           # Generate new version based on event type
           if [ "${{ github.event_name }}" == "pull_request" ]; then
             PR_NUMBER=${{ github.event.pull_request.number }}
-            NEW_VERSION="${MAIN_VERSION}rc${NUMERIC_SHA}.dev${PR_NUMBER}"
+            NEW_VERSION="${MAIN_VERSION}a${NUMERIC_SHA}.dev${PR_NUMBER}"
           else
             NEW_VERSION="${MAIN_VERSION}rc${NUMERIC_SHA}"
           fi
