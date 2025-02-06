@@ -45,9 +45,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          # Ensure is-ci and husky are installed to avoid postinstall errors
-          npm install is-ci husky --save-dev
+          npm install --no-optional  # Avoid optional deps like husky causing issues
+
+      - name: Skip Postinstall Scripts
+        run: |
+          npm config set ignore-scripts true
           npm install
+          npm config set ignore-scripts false
 
       - name: Update Version in package.json
         run: |
