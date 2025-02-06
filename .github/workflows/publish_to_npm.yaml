@@ -45,10 +45,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install
-
           # Ensure is-ci and husky are installed to avoid postinstall errors
           npm install is-ci husky --save-dev
+          npm install
 
       - name: Update Version in package.json
         run: |
