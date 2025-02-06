@@ -9,9 +9,6 @@ jobs:
   release:
     runs-on: ubuntu-latest
 
-    permissions:
-      id-token: write  # Required for npm authentication if using GitHub Packages
-
     defaults:
       run:
         working-directory: packages/typescript  # Set working directory
@@ -41,6 +38,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
+          registry-url: 'https://registry.npmjs.org/'
 
       - name: Update Version in package.json
         run: |
@@ -54,6 +52,23 @@ jobs:
 
       - name: Audit signatures
         run: npm audit signatures
+
+      - name: Verify npm token
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "NODE_AUTH_TOKEN is not set!"
+            exit 1
+          else
+            echo "NODE_AUTH_TOKEN is set."
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Check npm token (Partial)
+        run: |
+          echo "NODE_AUTH_TOKEN (partial hash): ${NODE_AUTH_TOKEN:0:5}*****"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to npm
         run: npm publish --access public
