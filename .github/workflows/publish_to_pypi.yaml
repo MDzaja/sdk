@@ -46,7 +46,7 @@ jobs:
 
       - name: Build the package with version argument
         run: |
-          python3 -m build --config-setting "--version=${PACKAGE_VERSION}"
+          python3 -m build
 
       - name: Publish to PyPI using Trusted Publisher
         run: |
