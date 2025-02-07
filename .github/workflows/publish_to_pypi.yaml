@@ -20,7 +20,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Validate Tag Format
+      - name: Validate Tag Format And Extract Version
         run: |
           TAG_NAME="${GITHUB_REF#refs/tags/}"
           echo "Tag name: $TAG_NAME"
@@ -44,7 +44,7 @@ jobs:
         run: |
           pip install --upgrade build twine
 
-      - name: Build the package with version argument
+      - name: Build the package
         run: |
           python3 -m build
 
