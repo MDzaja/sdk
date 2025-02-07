@@ -1,12 +1,12 @@
 [build-system]
 requires = [
-    "setuptools>=61.0",
+    "setuptools>=61.0"
 ]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "sdk-test" # TODO: publish-pipeline; change to daytona-sdk
-version = "0.0.0"
+dynamic = ["version"]
 authors = [
     { name = "Mirko Dzaja", email = "mirkodzaja0@gmail.com" }, # TODO: publish-pipeline; change to daytona-org
 ]
@@ -38,3 +38,6 @@ dev = [
     "black>=22.0.0",
     "isort>=5.10.0"
 ]
+
+[tool.setuptools.dynamic]
+version = {attr = "daytona_sdk.__version__"}
