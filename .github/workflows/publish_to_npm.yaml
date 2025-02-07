@@ -4,6 +4,11 @@ on:
   push:
     tags:
       - 'v*'  # Trigger on tags starting with 'v'
+  workflow_dispatch:
+    inputs:
+      package_version:
+        description: 'Version to publish (e.g., vX.Y, vX.Y.Z, vX.Y.ZaN, vX.Y.ZbN, vX.Y.ZrcN)'
+        required: true
 
 jobs:
   release:
@@ -17,20 +22,37 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Validate Tag Format
+      - name: Validate And Extract Version
         run: |
-          TAG_NAME="${GITHUB_REF#refs/tags/}"
-          echo "Tag name: $TAG_NAME"
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            INPUT_VALUE="${{ github.event.inputs.package_version }}"
+          else
+            INPUT_VALUE="${GITHUB_REF#refs/tags/}"
+          fi
+          
+          echo "Tag/input value: $INPUT_VALUE"
 
-          # Validate tag format: vX.Y.Z, vX.Y, vX.Y.ZaN, vX.Y.ZbN, vX.Y.ZrcN
-          if [[ ! "$TAG_NAME" =~ ^v[0-9]+\.[0-9]+(\.[0-9]+)?(a[0-9]+|b[0-9]+|rc[0-9]+)?$ ]]; then
-            echo "Invalid tag format: $TAG_NAME"
+          # Validate tag/input format: vX.Y.Z, vX.Y, vX.Y.ZaN, vX.Y.ZbN, vX.Y.ZrcN
+          if [[ ! "$INPUT_VALUE" =~ ^v[0-9]+\.[0-9]+(\.[0-9]+)?(a[0-9]+|b[0-9]+|rc[0-9]+)?$ ]]; then
+            echo "Invalid tag/input format: $INPUT_VALUE"
             echo "Allowed formats: vX.Y, vX.Y.Z, vX.Y.ZaN, vX.Y.ZbN, vX.Y.ZrcN"
             exit 1
           fi
 
-          # Extract version from tag (remove 'v' prefix)
-          echo "PACKAGE_VERSION=${TAG_NAME#v}" >> $GITHUB_ENV
+          PACKAGE_VERSION="${INPUT_VALUE#v}"
+          echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
+
+          # Determine npm tag based on version suffix
+          if [[ "$PACKAGE_VERSION" =~ a[0-9]+$ ]]; then
+            NPM_TAG="alpha"
+          elif [[ "$PACKAGE_VERSION" =~ b[0-9]+$ ]]; then
+            NPM_TAG="beta"
+          elif [[ "$PACKAGE_VERSION" =~ rc[0-9]+$ ]]; then
+            NPM_TAG="release-candidate"
+          else
+            NPM_TAG="latest"
+          fi
+          echo "NPM_TAG=$NPM_TAG" >> $GITHUB_ENV
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -55,11 +77,11 @@ jobs:
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish --access public
+        run: npm publish --access public --tag $NPM_TAG
 
       - name: Display Published Package Info
         run: |
           PACKAGE_NAME=$(node -p "require('./package.json').name")
-          echo "Successfully published $PACKAGE_NAME@$PACKAGE_VERSION to npm!"
+          echo "Successfully published $PACKAGE_NAME@$PACKAGE_VERSION to npm with tag $NPM_TAG!"
           echo "Install it using:"
           echo -e "\tnpm install $PACKAGE_NAME@$PACKAGE_VERSION"
