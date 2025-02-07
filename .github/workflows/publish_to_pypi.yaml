@@ -18,54 +18,39 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Validate Tag Format
-        id: validate_tag
         run: |
           TAG_NAME="${GITHUB_REF#refs/tags/}"
           echo "Tag name: $TAG_NAME"
 
           # Validate tag format: vX.Y.Z, vX.Y, vX.Y.ZaN, vX.Y.ZbN, vX.Y.ZrcN
-          if [[ ! "$TAG_NAME" =~ ^v([0-9]+)\.([0-9]+)(\.[0-9]+)?(a[0-9]+|b[0-9]+|rc[0-9]+)?$ ]]; then
+          if [[ ! "$TAG_NAME" =~ ^v[0-9]+\.[0-9]+(\.[0-9]+)?(a[0-9]+|b[0-9]+|rc[0-9]+)?$ ]]; then
             echo "Invalid tag format: $TAG_NAME"
             echo "Allowed formats: vX.Y, vX.Y.Z, vX.Y.ZaN, vX.Y.ZbN, vX.Y.ZrcN"
             exit 1
           fi
 
           # Extract version from tag (remove 'v' prefix)
-          PACKAGE_VERSION="${TAG_NAME#v}"
-          echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
+          echo "PACKAGE_VERSION=${TAG_NAME#v}" >> $GITHUB_ENV
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
-      - name: Install dependencies
+      - name: Install build tools
         run: |
-          pip install --upgrade setuptools wheel twine build tomli tomli-w
+          pip install --upgrade build twine
 
-      - name: Update Version in pyproject.toml
+      - name: Build the package with version argument
         run: |
-          python3 -c "
-          import tomli, tomli_w
-          from pathlib import Path
-
-          toml_path = Path('pyproject.toml')
-          data = tomli.loads(toml_path.read_text())
-          data['project']['version'] = '$PACKAGE_VERSION'
-          toml_path.write_text(tomli_w.dumps(data))
-          "
-
-      - name: Build the package (Official Release)
-        run: |
-          rm -rf dist/*
-          python3 -m build
+          python3 -m build --config-setting "--version=${PACKAGE_VERSION}"
 
       - name: Publish to PyPI using Trusted Publisher
         run: |
-          twine upload --repository testpypi dist/* --verbose
+          twine upload --repository testpypi dist/* --verbose # TODO: publish-pipeline; change to pypi
 
       - name: Display Published Package Info
         run: |
