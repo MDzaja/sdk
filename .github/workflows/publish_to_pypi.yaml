@@ -58,9 +58,9 @@ jobs:
         run: |
           python3 -m build
 
-      - name: Publish to PyPI using Trusted Publisher
-        run: |
-          twine upload --repository testpypi dist/* --verbose # TODO: publish-pipeline; change to pypi
+      # - name: Publish to PyPI using Trusted Publisher
+      #   run: |
+      #     twine upload --repository testpypi dist/* --verbose # TODO: publish-pipeline; change to pypi
 
       - name: Display Published Package Info
         run: |
