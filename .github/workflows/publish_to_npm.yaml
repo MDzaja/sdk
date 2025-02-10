@@ -22,6 +22,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Print Head Commit SHA
+        run: |
+          echo "Head Commit SHA: ${{ github.sha }}"
+
       - name: Validate And Extract Version
         run: |
           if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
@@ -40,18 +44,25 @@ jobs:
           fi
 
           PACKAGE_VERSION="${INPUT_VALUE#v}"
-          echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
 
-          # Determine npm tag based on version suffix
-          if [[ "$PACKAGE_VERSION" =~ a[0-9]+$ ]]; then
+          # Convert pre-release format; determine npm tag
+          if [[ "$PACKAGE_VERSION" =~ ^([0-9]+\.[0-9]+\.[0-9]+)a([0-9]+)$ ]]; then
+            PACKAGE_VERSION="\1-alpha.\2"
             NPM_TAG="alpha"
-          elif [[ "$PACKAGE_VERSION" =~ b[0-9]+$ ]]; then
+          elif [[ "$PACKAGE_VERSION" =~ ^([0-9]+\.[0-9]+\.[0-9]+)b([0-9]+)$ ]]; then
+            PACKAGE_VERSION="\1-beta.\2"
             NPM_TAG="beta"
-          elif [[ "$PACKAGE_VERSION" =~ rc[0-9]+$ ]]; then
+          elif [[ "$PACKAGE_VERSION" =~ ^([0-9]+\.[0-9]+\.[0-9]+)rc([0-9]+)$ ]]; then
+            PACKAGE_VERSION="\1-rc.\2"
             NPM_TAG="release-candidate"
           else
             NPM_TAG="latest"
           fi
+
+          echo "PACKAGE_VERSION=$PACKAGE_VERSION"
+          echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
+
+          echo "NPM_TAG=$NPM_TAG"
           echo "NPM_TAG=$NPM_TAG" >> $GITHUB_ENV
 
       - name: Set up Node.js
