@@ -7,7 +7,7 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "sdk-test" # TODO: publish-pipeline; change to daytona-sdk
+name = "sdk_test" # TODO: publish-pipeline; change to daytona-sdk
 dynamic = ["version"]
 authors = [
     { name = "Mirko Dzaja", email = "mirkodzaja0@gmail.com" }, # TODO: publish-pipeline; change to daytona-org
