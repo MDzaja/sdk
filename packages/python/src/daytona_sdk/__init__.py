@@ -8,6 +8,7 @@ from .daytona import (
     SessionExecuteResponse,
     DaytonaException
 )
+from .code_toolbox.common import CodeRunParams
 
 __all__ = [
     "Daytona",
@@ -17,5 +18,6 @@ __all__ = [
     "Workspace",
     "SessionExecuteRequest",
     "SessionExecuteResponse",
-    "DaytonaException"
+    "DaytonaException",
+    "CodeRunParams"
 ]
