@@ -1,3 +1,8 @@
+---
+title: Git Reference
+description: Git Reference for TypeScript SDK
+---
+
 [Daytona TypeScript SDK - v0.9.0](../README.md) / Git
 
 # Class: Git
@@ -41,7 +46,7 @@ Provides Git operations within a workspace
 
 #### Defined in
 
-[Git.ts:14](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Git.ts#L14)
+[Git.ts:14](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Git.ts#L14)
 
 ## Methods
 
@@ -64,7 +69,7 @@ Stages files for commit
 
 #### Defined in
 
-[Git.ts:26](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Git.ts#L26)
+[Git.ts:26](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Git.ts#L26)
 
 ___
 
@@ -88,7 +93,7 @@ List of branches
 
 #### Defined in
 
-[Git.ts:38](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Git.ts#L38)
+[Git.ts:38](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Git.ts#L38)
 
 ___
 
@@ -115,7 +120,7 @@ Clones a Git repository
 
 #### Defined in
 
-[Git.ts:53](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Git.ts#L53)
+[Git.ts:53](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Git.ts#L53)
 
 ___
 
@@ -140,7 +145,7 @@ Creates a new commit with staged changes
 
 #### Defined in
 
-[Git.ts:80](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Git.ts#L80)
+[Git.ts:80](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Git.ts#L80)
 
 ___
 
@@ -164,7 +169,7 @@ Pulls changes from remote repository
 
 #### Defined in
 
-[Git.ts:120](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Git.ts#L120)
+[Git.ts:120](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Git.ts#L120)
 
 ___
 
@@ -188,7 +193,7 @@ Pushes local commits to remote repository
 
 #### Defined in
 
-[Git.ts:101](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Git.ts#L101)
+[Git.ts:101](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Git.ts#L101)
 
 ___
 
@@ -212,4 +217,4 @@ Repository status information
 
 #### Defined in
 
-[Git.ts:137](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Git.ts#L137)
+[Git.ts:137](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Git.ts#L137)

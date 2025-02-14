@@ -1,3 +1,8 @@
+---
+title: WorkspaceCodeToolbox Reference
+description: WorkspaceCodeToolbox Reference for TypeScript SDK
+---
+
 [Daytona TypeScript SDK - v0.9.0](../README.md) / WorkspaceCodeToolbox
 
 # Interface: WorkspaceCodeToolbox
@@ -31,4 +36,4 @@ Generates a command to run the provided code
 
 #### Defined in
 
-[Workspace.ts:63](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Workspace.ts#L63)
+[Workspace.ts:63](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Workspace.ts#L63)

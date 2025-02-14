@@ -1,3 +1,8 @@
+---
+title: CreateWorkspaceParams Reference
+description: CreateWorkspaceParams Reference for TypeScript SDK
+---
+
 [Daytona TypeScript SDK - v0.9.0](../README.md) / CreateWorkspaceParams
 
 # Interface: CreateWorkspaceParams
@@ -32,7 +37,7 @@ If true, will not wait for the workspace to be ready before returning
 
 #### Defined in
 
-[Daytona.ts:70](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Daytona.ts#L70)
+[Daytona.ts:70](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Daytona.ts#L70)
 
 ___
 
@@ -44,7 +49,7 @@ Auto-stop interval in minutes (0 means disabled) (must be a non-negative integer
 
 #### Defined in
 
-[Daytona.ts:74](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Daytona.ts#L74)
+[Daytona.ts:74](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Daytona.ts#L74)
 
 ___
 
@@ -56,7 +61,7 @@ Optional environment variables to set in the workspace
 
 #### Defined in
 
-[Daytona.ts:60](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Daytona.ts#L60)
+[Daytona.ts:60](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Daytona.ts#L60)
 
 ___
 
@@ -68,7 +73,7 @@ Optional workspace ID. If not provided, a random ID will be generated
 
 #### Defined in
 
-[Daytona.ts:52](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Daytona.ts#L52)
+[Daytona.ts:52](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Daytona.ts#L52)
 
 ___
 
@@ -80,7 +85,7 @@ Optional Docker image to use for the workspace
 
 #### Defined in
 
-[Daytona.ts:54](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Daytona.ts#L54)
+[Daytona.ts:54](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Daytona.ts#L54)
 
 ___
 
@@ -92,7 +97,7 @@ Workspace labels
 
 #### Defined in
 
-[Daytona.ts:62](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Daytona.ts#L62)
+[Daytona.ts:62](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Daytona.ts#L62)
 
 ___
 
@@ -104,7 +109,7 @@ Programming language for direct code execution
 
 #### Defined in
 
-[Daytona.ts:58](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Daytona.ts#L58)
+[Daytona.ts:58](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Daytona.ts#L58)
 
 ___
 
@@ -116,7 +121,7 @@ Is the workspace port preview public
 
 #### Defined in
 
-[Daytona.ts:64](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Daytona.ts#L64)
+[Daytona.ts:64](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Daytona.ts#L64)
 
 ___
 
@@ -128,7 +133,7 @@ Resource allocation for the workspace
 
 #### Defined in
 
-[Daytona.ts:68](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Daytona.ts#L68)
+[Daytona.ts:68](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Daytona.ts#L68)
 
 ___
 
@@ -140,7 +145,7 @@ Target location for the workspace
 
 #### Defined in
 
-[Daytona.ts:66](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Daytona.ts#L66)
+[Daytona.ts:66](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Daytona.ts#L66)
 
 ___
 
@@ -152,7 +157,7 @@ Timeout in seconds, for the workspace to be ready (0 means no timeout)
 
 #### Defined in
 
-[Daytona.ts:72](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Daytona.ts#L72)
+[Daytona.ts:72](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Daytona.ts#L72)
 
 ___
 
@@ -164,4 +169,4 @@ Optional os user to use for the workspace
 
 #### Defined in
 
-[Daytona.ts:56](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Daytona.ts#L56)
+[Daytona.ts:56](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Daytona.ts#L56)

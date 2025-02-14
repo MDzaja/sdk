@@ -1,6 +1,4 @@
 """
-Daytona SDK for Python
-
 This module provides the main entry point for interacting with Daytona Server API.
 """
 

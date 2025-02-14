@@ -1,3 +1,8 @@
+---
+title: FileSystem Reference
+description: FileSystem Reference for TypeScript SDK
+---
+
 [Daytona TypeScript SDK - v0.9.0](../README.md) / FileSystem
 
 # Class: FileSystem
@@ -44,7 +49,7 @@ Provides file system operations within a workspace
 
 #### Defined in
 
-[FileSystem.ts:29](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/FileSystem.ts#L29)
+[FileSystem.ts:29](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/FileSystem.ts#L29)
 
 ## Methods
 
@@ -67,7 +72,7 @@ Creates a new folder in the workspace
 
 #### Defined in
 
-[FileSystem.ts:40](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/FileSystem.ts#L40)
+[FileSystem.ts:40](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/FileSystem.ts#L40)
 
 ___
 
@@ -89,7 +94,7 @@ Deletes a file from the workspace
 
 #### Defined in
 
-[FileSystem.ts:50](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/FileSystem.ts#L50)
+[FileSystem.ts:50](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/FileSystem.ts#L50)
 
 ___
 
@@ -113,7 +118,7 @@ The file contents as a Blob
 
 #### Defined in
 
-[FileSystem.ts:60](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/FileSystem.ts#L60)
+[FileSystem.ts:60](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/FileSystem.ts#L60)
 
 ___
 
@@ -138,7 +143,7 @@ Array of matching files
 
 #### Defined in
 
-[FileSystem.ts:71](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/FileSystem.ts#L71)
+[FileSystem.ts:71](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/FileSystem.ts#L71)
 
 ___
 
@@ -162,7 +167,7 @@ File information
 
 #### Defined in
 
-[FileSystem.ts:81](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/FileSystem.ts#L81)
+[FileSystem.ts:81](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/FileSystem.ts#L81)
 
 ___
 
@@ -186,7 +191,7 @@ Array of file information
 
 #### Defined in
 
-[FileSystem.ts:91](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/FileSystem.ts#L91)
+[FileSystem.ts:91](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/FileSystem.ts#L91)
 
 ___
 
@@ -209,7 +214,7 @@ Moves/renames files
 
 #### Defined in
 
-[FileSystem.ts:102](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/FileSystem.ts#L102)
+[FileSystem.ts:102](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/FileSystem.ts#L102)
 
 ___
 
@@ -235,7 +240,7 @@ Results of the replace operation
 
 #### Defined in
 
-[FileSystem.ts:114](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/FileSystem.ts#L114)
+[FileSystem.ts:114](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/FileSystem.ts#L114)
 
 ___
 
@@ -260,7 +265,7 @@ Search results
 
 #### Defined in
 
-[FileSystem.ts:135](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/FileSystem.ts#L135)
+[FileSystem.ts:135](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/FileSystem.ts#L135)
 
 ___
 
@@ -283,7 +288,7 @@ Sets file permissions
 
 #### Defined in
 
-[FileSystem.ts:149](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/FileSystem.ts#L149)
+[FileSystem.ts:149](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/FileSystem.ts#L149)
 
 ___
 
@@ -306,4 +311,4 @@ Uploads a file to the workspace
 
 #### Defined in
 
-[FileSystem.ts:163](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/FileSystem.ts#L163)
+[FileSystem.ts:163](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/FileSystem.ts#L163)

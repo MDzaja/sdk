@@ -1,3 +1,8 @@
+---
+title: Workspace Reference
+description: Workspace Reference for TypeScript SDK
+---
+
 [Daytona TypeScript SDK - v0.9.0](../README.md) / Workspace
 
 # Class: Workspace
@@ -58,7 +63,7 @@ Creates a new workspace instance
 
 #### Defined in
 
-[Workspace.ts:87](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Workspace.ts#L87)
+[Workspace.ts:87](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Workspace.ts#L87)
 
 ## Properties
 
@@ -70,7 +75,7 @@ File system operations for the workspace
 
 #### Defined in
 
-[Workspace.ts:72](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Workspace.ts#L72)
+[Workspace.ts:72](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Workspace.ts#L72)
 
 ___
 
@@ -82,7 +87,7 @@ Git operations for the workspace
 
 #### Defined in
 
-[Workspace.ts:74](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Workspace.ts#L74)
+[Workspace.ts:74](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Workspace.ts#L74)
 
 ___
 
@@ -94,7 +99,7 @@ Unique identifier for the workspace
 
 #### Defined in
 
-[Workspace.ts:88](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Workspace.ts#L88)
+[Workspace.ts:88](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Workspace.ts#L88)
 
 ___
 
@@ -106,7 +111,7 @@ The underlying workspace instance
 
 #### Defined in
 
-[Workspace.ts:89](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Workspace.ts#L89)
+[Workspace.ts:89](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Workspace.ts#L89)
 
 ___
 
@@ -118,7 +123,7 @@ Process and code execution operations
 
 #### Defined in
 
-[Workspace.ts:76](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Workspace.ts#L76)
+[Workspace.ts:76](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Workspace.ts#L76)
 
 ___
 
@@ -130,7 +135,7 @@ API client for toolbox operations
 
 #### Defined in
 
-[Workspace.ts:91](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Workspace.ts#L91)
+[Workspace.ts:91](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Workspace.ts#L91)
 
 ___
 
@@ -142,7 +147,7 @@ API client for workspace operations
 
 #### Defined in
 
-[Workspace.ts:90](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Workspace.ts#L90)
+[Workspace.ts:90](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Workspace.ts#L90)
 
 ## Methods
 
@@ -167,7 +172,7 @@ A new LSP server instance
 
 #### Defined in
 
-[Workspace.ts:116](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Workspace.ts#L116)
+[Workspace.ts:116](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Workspace.ts#L116)
 
 ___
 
@@ -183,7 +188,7 @@ Deletes the workspace
 
 #### Defined in
 
-[Workspace.ts:161](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Workspace.ts#L161)
+[Workspace.ts:161](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Workspace.ts#L161)
 
 ___
 
@@ -201,7 +206,7 @@ The absolute path to the workspace root
 
 #### Defined in
 
-[Workspace.ts:103](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Workspace.ts#L103)
+[Workspace.ts:103](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Workspace.ts#L103)
 
 ___
 
@@ -219,7 +224,7 @@ Structured workspace information
 
 #### Defined in
 
-[Workspace.ts:218](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Workspace.ts#L218)
+[Workspace.ts:218](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Workspace.ts#L218)
 
 ___
 
@@ -245,7 +250,7 @@ If interval is negative
 
 #### Defined in
 
-[Workspace.ts:256](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Workspace.ts#L256)
+[Workspace.ts:256](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Workspace.ts#L256)
 
 ___
 
@@ -267,7 +272,7 @@ Sets labels for the workspace
 
 #### Defined in
 
-[Workspace.ts:132](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Workspace.ts#L132)
+[Workspace.ts:132](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Workspace.ts#L132)
 
 ___
 
@@ -289,7 +294,7 @@ Starts the workspace
 
 #### Defined in
 
-[Workspace.ts:140](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Workspace.ts#L140)
+[Workspace.ts:140](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Workspace.ts#L140)
 
 ___
 
@@ -305,7 +310,7 @@ Stops the workspace
 
 #### Defined in
 
-[Workspace.ts:152](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Workspace.ts#L152)
+[Workspace.ts:152](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Workspace.ts#L152)
 
 ___
 
@@ -325,7 +330,7 @@ ___
 
 #### Defined in
 
-[Workspace.ts:165](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Workspace.ts#L165)
+[Workspace.ts:165](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Workspace.ts#L165)
 
 ___
 
@@ -339,4 +344,4 @@ ___
 
 #### Defined in
 
-[Workspace.ts:191](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Workspace.ts#L191)
+[Workspace.ts:191](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Workspace.ts#L191)

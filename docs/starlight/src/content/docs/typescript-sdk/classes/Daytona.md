@@ -1,3 +1,8 @@
+---
+title: Daytona Reference
+description: Daytona Reference for TypeScript SDK
+---
+
 [Daytona TypeScript SDK - v0.9.0](../README.md) / Daytona
 
 # Class: Daytona
@@ -45,7 +50,7 @@ When API key or server URL is missing
 
 #### Defined in
 
-[Daytona.ts:94](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Daytona.ts#L94)
+[Daytona.ts:94](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Daytona.ts#L94)
 
 ## Methods
 
@@ -69,7 +74,7 @@ The created workspace instance
 
 #### Defined in
 
-[Daytona.ts:128](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Daytona.ts#L128)
+[Daytona.ts:128](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Daytona.ts#L128)
 
 ___
 
@@ -93,7 +98,7 @@ The workspace instance
 
 #### Defined in
 
-[Daytona.ts:182](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Daytona.ts#L182)
+[Daytona.ts:182](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Daytona.ts#L182)
 
 ___
 
@@ -117,7 +122,7 @@ The workspace instance
 
 #### Defined in
 
-[Daytona.ts:243](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Daytona.ts#L243)
+[Daytona.ts:243](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Daytona.ts#L243)
 
 ___
 
@@ -135,7 +140,7 @@ The list of workspaces
 
 #### Defined in
 
-[Daytona.ts:195](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Daytona.ts#L195)
+[Daytona.ts:195](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Daytona.ts#L195)
 
 ___
 
@@ -157,7 +162,7 @@ Removes a workspace
 
 #### Defined in
 
-[Daytona.ts:234](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Daytona.ts#L234)
+[Daytona.ts:234](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Daytona.ts#L234)
 
 ___
 
@@ -180,7 +185,7 @@ Starts a workspace
 
 #### Defined in
 
-[Daytona.ts:216](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Daytona.ts#L216)
+[Daytona.ts:216](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Daytona.ts#L216)
 
 ___
 
@@ -202,4 +207,4 @@ Stops a workspace
 
 #### Defined in
 
-[Daytona.ts:225](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Daytona.ts#L225)
+[Daytona.ts:225](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Daytona.ts#L225)

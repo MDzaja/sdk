@@ -1,3 +1,8 @@
+---
+title: Process Reference
+description: Process Reference for TypeScript SDK
+---
+
 [Daytona TypeScript SDK - v0.9.0](../README.md) / Process
 
 # Class: Process
@@ -43,7 +48,7 @@ Handles process and code execution within a workspace
 
 #### Defined in
 
-[Process.ts:17](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Process.ts#L17)
+[Process.ts:17](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Process.ts#L17)
 
 ## Methods
 
@@ -67,7 +72,7 @@ Code execution results
 
 #### Defined in
 
-[Process.ts:47](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Process.ts#L47)
+[Process.ts:47](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Process.ts#L47)
 
 ___
 
@@ -91,7 +96,7 @@ Code execution results
 
 #### Defined in
 
-[Process.ts:62](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Process.ts#L62)
+[Process.ts:62](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Process.ts#L62)
 
 ___
 
@@ -113,7 +118,7 @@ Deletes a session in the workspace
 
 #### Defined in
 
-[Process.ts:124](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Process.ts#L124)
+[Process.ts:124](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Process.ts#L124)
 
 ___
 
@@ -139,7 +144,7 @@ Command execution results
 
 #### Defined in
 
-[Process.ts:28](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Process.ts#L28)
+[Process.ts:28](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Process.ts#L28)
 
 ___
 
@@ -164,7 +169,7 @@ Command execution results
 
 #### Defined in
 
-[Process.ts:74](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Process.ts#L74)
+[Process.ts:74](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Process.ts#L74)
 
 ___
 
@@ -188,7 +193,7 @@ Session
 
 #### Defined in
 
-[Process.ts:95](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Process.ts#L95)
+[Process.ts:95](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Process.ts#L95)
 
 ___
 
@@ -213,7 +218,7 @@ Session command
 
 #### Defined in
 
-[Process.ts:106](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Process.ts#L106)
+[Process.ts:106](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Process.ts#L106)
 
 ___
 
@@ -238,7 +243,7 @@ Command logs
 
 #### Defined in
 
-[Process.ts:85](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Process.ts#L85)
+[Process.ts:85](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Process.ts#L85)
 
 ___
 
@@ -256,4 +261,4 @@ List of sessions
 
 #### Defined in
 
-[Process.ts:115](https://github.com/MDzaja/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/typescript/src/Process.ts#L115)
+[Process.ts:115](https://github.com/MDzaja/sdk/blob/e93abec36901ef96205bc214bb41f96f1104036a/packages/typescript/src/Process.ts#L115)

@@ -1,22 +1,11 @@
-# Table of Contents
-
-* [daytona\_sdk.filesystem](#daytona_sdk.filesystem)
-  * [FileSystem](#daytona_sdk.filesystem.FileSystem)
-    * [create\_folder](#daytona_sdk.filesystem.FileSystem.create_folder)
-    * [delete\_file](#daytona_sdk.filesystem.FileSystem.delete_file)
-    * [download\_file](#daytona_sdk.filesystem.FileSystem.download_file)
-    * [find\_files](#daytona_sdk.filesystem.FileSystem.find_files)
-    * [get\_file\_info](#daytona_sdk.filesystem.FileSystem.get_file_info)
-    * [list\_files](#daytona_sdk.filesystem.FileSystem.list_files)
-    * [move\_files](#daytona_sdk.filesystem.FileSystem.move_files)
-    * [replace\_in\_files](#daytona_sdk.filesystem.FileSystem.replace_in_files)
-    * [search\_files](#daytona_sdk.filesystem.FileSystem.search_files)
-    * [set\_file\_permissions](#daytona_sdk.filesystem.FileSystem.set_file_permissions)
-    * [upload\_file](#daytona_sdk.filesystem.FileSystem.upload_file)
+---
+title: Filesystem
+description: Filesystem
+---
 
 <a id="daytona_sdk.filesystem"></a>
 
-# Module daytona\_sdk.filesystem
+## daytona\_sdk.filesystem
 
 File system operations within a Daytona workspace.
 
@@ -25,13 +14,13 @@ including creating, deleting, moving files, and searching file contents.
 
 <a id="daytona_sdk.filesystem.FileSystem"></a>
 
-## FileSystem Objects
+### FileSystem
 
 ```python
 class FileSystem()
 ```
 
-[[view_source]](https://github.com/daytonaio/daytona-client/blob/1398af77e9dc731b596a6407c9aac388c5e999a6/packages/python/src/daytona_sdk/filesystem.py#L20)
+[[view_source]](https://github.com/daytonaio/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/python/src/daytona_sdk/filesystem.py#L20)
 
 Provides file system operations within a workspace.
 
@@ -42,13 +31,13 @@ Provides file system operations within a workspace.
 
 <a id="daytona_sdk.filesystem.FileSystem.create_folder"></a>
 
-#### create\_folder
+#### FileSystem.create\_folder
 
 ```python
 def create_folder(path: str, mode: str) -> None
 ```
 
-[[view_source]](https://github.com/daytonaio/daytona-client/blob/1398af77e9dc731b596a6407c9aac388c5e999a6/packages/python/src/daytona_sdk/filesystem.py#L32)
+[[view_source]](https://github.com/daytonaio/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/python/src/daytona_sdk/filesystem.py#L32)
 
 Creates a new folder in the workspace.
 
@@ -59,13 +48,13 @@ Creates a new folder in the workspace.
 
 <a id="daytona_sdk.filesystem.FileSystem.delete_file"></a>
 
-#### delete\_file
+#### FileSystem.delete\_file
 
 ```python
 def delete_file(path: str) -> None
 ```
 
-[[view_source]](https://github.com/daytonaio/daytona-client/blob/1398af77e9dc731b596a6407c9aac388c5e999a6/packages/python/src/daytona_sdk/filesystem.py#L43)
+[[view_source]](https://github.com/daytonaio/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/python/src/daytona_sdk/filesystem.py#L43)
 
 Deletes a file from the workspace.
 
@@ -75,13 +64,13 @@ Deletes a file from the workspace.
 
 <a id="daytona_sdk.filesystem.FileSystem.download_file"></a>
 
-#### download\_file
+#### FileSystem.download\_file
 
 ```python
 def download_file(path: str) -> bytes
 ```
 
-[[view_source]](https://github.com/daytonaio/daytona-client/blob/1398af77e9dc731b596a6407c9aac388c5e999a6/packages/python/src/daytona_sdk/filesystem.py#L53)
+[[view_source]](https://github.com/daytonaio/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/python/src/daytona_sdk/filesystem.py#L53)
 
 Downloads a file from the workspace.
 
@@ -96,13 +85,13 @@ Downloads a file from the workspace.
 
 <a id="daytona_sdk.filesystem.FileSystem.find_files"></a>
 
-#### find\_files
+#### FileSystem.find\_files
 
 ```python
 def find_files(path: str, pattern: str) -> List[Match]
 ```
 
-[[view_source]](https://github.com/daytonaio/daytona-client/blob/1398af77e9dc731b596a6407c9aac388c5e999a6/packages/python/src/daytona_sdk/filesystem.py#L66)
+[[view_source]](https://github.com/daytonaio/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/python/src/daytona_sdk/filesystem.py#L66)
 
 Searches for files matching a pattern.
 
@@ -118,13 +107,13 @@ Searches for files matching a pattern.
 
 <a id="daytona_sdk.filesystem.FileSystem.get_file_info"></a>
 
-#### get\_file\_info
+#### FileSystem.get\_file\_info
 
 ```python
 def get_file_info(path: str) -> FileInfo
 ```
 
-[[view_source]](https://github.com/daytonaio/daytona-client/blob/1398af77e9dc731b596a6407c9aac388c5e999a6/packages/python/src/daytona_sdk/filesystem.py#L80)
+[[view_source]](https://github.com/daytonaio/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/python/src/daytona_sdk/filesystem.py#L80)
 
 Gets detailed information about a file.
 
@@ -139,13 +128,13 @@ Gets detailed information about a file.
 
 <a id="daytona_sdk.filesystem.FileSystem.list_files"></a>
 
-#### list\_files
+#### FileSystem.list\_files
 
 ```python
 def list_files(path: str) -> List[FileInfo]
 ```
 
-[[view_source]](https://github.com/daytonaio/daytona-client/blob/1398af77e9dc731b596a6407c9aac388c5e999a6/packages/python/src/daytona_sdk/filesystem.py#L93)
+[[view_source]](https://github.com/daytonaio/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/python/src/daytona_sdk/filesystem.py#L93)
 
 Lists files and directories in a given path.
 
@@ -160,13 +149,13 @@ Lists files and directories in a given path.
 
 <a id="daytona_sdk.filesystem.FileSystem.move_files"></a>
 
-#### move\_files
+#### FileSystem.move\_files
 
 ```python
 def move_files(source: str, destination: str) -> None
 ```
 
-[[view_source]](https://github.com/daytonaio/daytona-client/blob/1398af77e9dc731b596a6407c9aac388c5e999a6/packages/python/src/daytona_sdk/filesystem.py#L106)
+[[view_source]](https://github.com/daytonaio/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/python/src/daytona_sdk/filesystem.py#L106)
 
 Moves files from one location to another.
 
@@ -177,14 +166,14 @@ Moves files from one location to another.
 
 <a id="daytona_sdk.filesystem.FileSystem.replace_in_files"></a>
 
-#### replace\_in\_files
+#### FileSystem.replace\_in\_files
 
 ```python
 def replace_in_files(files: List[str], pattern: str,
                      new_value: str) -> List[ReplaceResult]
 ```
 
-[[view_source]](https://github.com/daytonaio/daytona-client/blob/1398af77e9dc731b596a6407c9aac388c5e999a6/packages/python/src/daytona_sdk/filesystem.py#L119)
+[[view_source]](https://github.com/daytonaio/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/python/src/daytona_sdk/filesystem.py#L119)
 
 Replaces text in multiple files.
 
@@ -201,13 +190,13 @@ Replaces text in multiple files.
 
 <a id="daytona_sdk.filesystem.FileSystem.search_files"></a>
 
-#### search\_files
+#### FileSystem.search\_files
 
 ```python
 def search_files(path: str, pattern: str) -> SearchFilesResponse
 ```
 
-[[view_source]](https://github.com/daytonaio/daytona-client/blob/1398af77e9dc731b596a6407c9aac388c5e999a6/packages/python/src/daytona_sdk/filesystem.py#L140)
+[[view_source]](https://github.com/daytonaio/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/python/src/daytona_sdk/filesystem.py#L140)
 
 Searches for files matching a pattern in their names.
 
@@ -223,7 +212,7 @@ Searches for files matching a pattern in their names.
 
 <a id="daytona_sdk.filesystem.FileSystem.set_file_permissions"></a>
 
-#### set\_file\_permissions
+#### FileSystem.set\_file\_permissions
 
 ```python
 def set_file_permissions(path: str,
@@ -232,7 +221,7 @@ def set_file_permissions(path: str,
                          group: str = None) -> None
 ```
 
-[[view_source]](https://github.com/daytonaio/daytona-client/blob/1398af77e9dc731b596a6407c9aac388c5e999a6/packages/python/src/daytona_sdk/filesystem.py#L154)
+[[view_source]](https://github.com/daytonaio/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/python/src/daytona_sdk/filesystem.py#L154)
 
 Sets permissions and ownership for a file or directory.
 
@@ -245,13 +234,13 @@ Sets permissions and ownership for a file or directory.
 
 <a id="daytona_sdk.filesystem.FileSystem.upload_file"></a>
 
-#### upload\_file
+#### FileSystem.upload\_file
 
 ```python
 def upload_file(path: str, file: bytes) -> None
 ```
 
-[[view_source]](https://github.com/daytonaio/daytona-client/blob/1398af77e9dc731b596a6407c9aac388c5e999a6/packages/python/src/daytona_sdk/filesystem.py#L173)
+[[view_source]](https://github.com/daytonaio/sdk/blob/31cb5075e4893dc9df74a5a3874922d510ba9594/packages/python/src/daytona_sdk/filesystem.py#L173)
 
 Uploads a file to the workspace.
 
