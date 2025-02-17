@@ -12,7 +12,7 @@ from .filesystem import FileSystem
 from .git import Git
 from .process import Process
 from .lsp_server import LspServer, LspLanguageId
-from daytona_api_client import Workspace as WorkspaceInstance, ToolboxApi, WorkspaceApi
+from daytona_api_client import Workspace as WorkspaceInstance, ToolboxApi, WorkspaceApi, ResizeWorkspace as ResizeParams
 from .protocols import WorkspaceCodeToolbox
 from dataclasses import dataclass
 from datetime import datetime
@@ -266,3 +266,15 @@ class Workspace:
 
         self.workspace_api.set_autostop_interval(self.id, interval)
         self.instance.auto_stop_interval = interval
+
+    def resize(self, resources: ResizeParams) -> None:
+        """Resize the workspace to the specified resources.
+
+        Args:
+            resources: The new resources for the workspace
+        """
+        self.workspace_api.resize_workspace(self.id, resources)
+
+    def archive(self) -> None:
+        """Archives the workspace, making it inactive and preserving its state. Workspace must be stopped before archiving."""
+        self.workspace_api.archive_workspace(self.id)

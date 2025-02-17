@@ -7,6 +7,8 @@ from .daytona import (
     SessionExecuteRequest,
     SessionExecuteResponse,
 )
+from daytona_api_client import ResizeWorkspace as ResizeParams
+
 
 __all__ = [
     "Daytona",
@@ -15,5 +17,6 @@ __all__ = [
     "CodeLanguage",
     "Workspace",
     "SessionExecuteRequest",
-    "SessionExecuteResponse"
+    "SessionExecuteResponse",
+    "ResizeParams",
 ]

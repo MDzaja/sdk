@@ -1,5 +1,5 @@
 import { ToolboxApi, WorkspaceApi } from '@daytonaio/api-client'
-import { Workspace as WorkspaceInstance } from '@daytonaio/api-client'
+import { Workspace as WorkspaceInstance, ResizeWorkspace as ResizeParams } from '@daytonaio/api-client'
 import { FileSystem } from './FileSystem'
 import { Git } from './Git'
 //  import { LspLanguageId, LspServer } from './LspServer'
@@ -260,5 +260,20 @@ export class Workspace {
     
     await this.workspaceApi.setAutostopInterval(this.id, interval)
     this.instance.autoStopInterval = interval
+  }
+
+  /**
+   * Resizes the workspace with the specified resources.
+   * @param {ResizeParams} resources - The new resource configuration for the workspace.
+   */
+  public async resize(resources: ResizeParams): Promise<void> {
+    await this.workspaceApi.resizeWorkspace(this.id, resources)
+  }
+
+  /**
+   * Archives the workspace, making it inactive and preserving its state. Workspace must be stopped before archiving.
+   */
+  public async archive(): Promise<void> {
+    await this.workspaceApi.archiveWorkspace(this.id)
   }
 }
