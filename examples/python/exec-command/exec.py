@@ -1,6 +1,12 @@
-from daytona_sdk import Daytona, CreateWorkspaceParams
+from daytona_sdk import Daytona, CreateWorkspaceParams, DaytonaConfig
 
-daytona = Daytona()
+config = DaytonaConfig(
+    api_key="dtn_53642f583077d534f6ac7704ba308e535305a9b2d1d59450d0dd9ecea55a2a42",
+    server_url="https://stage.daytona.work/api",
+    target="eu"
+)
+
+daytona = Daytona(config)
 
 params = CreateWorkspaceParams(
     language="python",
@@ -20,5 +26,14 @@ if response.exit_code != 0:
     print(f"Error: {response.exit_code} {response.result}")
 else:
     print(response.result)
+
+project_dir = "/home/daytona/sdk"
+
+# create folder
+workspace.git.clone("https://github.com/MDzaja/sdk.git", project_dir)
+
+branches = workspace.git.branches(project_dir)
+print(f"Current branch: {branches.branches}")
+
 
 daytona.remove(workspace)
