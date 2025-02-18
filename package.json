@@ -18,7 +18,9 @@
   "license": "ISC",
   "dependencies": {
     "@daytonaio/api-client": "^0.13.0",
-    "@dotenvx/dotenvx": "^1.25.1"
+    "@dotenvx/dotenvx": "^1.25.1",
+    "typedoc": "^0.27.7",
+    "typedoc-plugin-markdown": "^4.4.2"
   },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.15.3",

@@ -3,7 +3,7 @@
     "docs": "npm run docs:daytona && npm run docs:workspace && npm run docs:filesystem && npm run docs:git && npm run docs:process && npm run docs:lsp",
     "docs:daytona": "TITLE='Daytona' OUTPUT_FILE='../../docs/starlight/src/content/docs/python-sdk/daytona.md' pydoc-markdown -m daytona_sdk.daytona pydoc-markdown.yml",
     "docs:workspace": "TITLE='Workspace' OUTPUT_FILE='../../docs/starlight/src/content/docs/python-sdk/workspace.md' pydoc-markdown -m daytona_sdk.workspace pydoc-markdown.yml",
-    "docs:filesystem": "TITLE='Filesystem' OUTPUT_FILE='../../docs/starlight/src/content/docs/python-sdk/filesystem.md' pydoc-markdown -m daytona_sdk.filesystem pydoc-markdown.yml",
+    "docs:filesystem": "TITLE='File System' OUTPUT_FILE='../../docs/starlight/src/content/docs/python-sdk/filesystem.md' pydoc-markdown -m daytona_sdk.filesystem pydoc-markdown.yml",
     "docs:git": "TITLE='Git' OUTPUT_FILE='../../docs/starlight/src/content/docs/python-sdk/git.md' pydoc-markdown -m daytona_sdk.git pydoc-markdown.yml",
     "docs:process": "TITLE='Process' OUTPUT_FILE='../../docs/starlight/src/content/docs/python-sdk/process.md' pydoc-markdown -m daytona_sdk.process pydoc-markdown.yml",
     "docs:lsp": "TITLE='Language Server Protocol' OUTPUT_FILE='../../docs/starlight/src/content/docs/python-sdk/lsp.md' pydoc-markdown -m daytona_sdk.lsp_server pydoc-markdown.yml"

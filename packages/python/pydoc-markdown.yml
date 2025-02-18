@@ -24,7 +24,7 @@ renderer:
   render_module_header: true
   header_level_by_type:
       Module: 2
-      Class: 3
+      Class: 2
       Method: 4
       Function: 4
       Data: 5

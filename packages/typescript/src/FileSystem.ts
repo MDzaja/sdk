@@ -12,7 +12,7 @@ import {
  * Parameters for setting file permissions
  * @interface FilePermissionsParams
  */
-type FilePermissionsParams = {
+export type FilePermissionsParams = {
   /** Group owner of the file */
   group?: string
   /** File mode/permissions in octal format (e.g. "644") */
