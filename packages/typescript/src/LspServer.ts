@@ -4,6 +4,7 @@ import {
   Workspace as WorkspaceInstance,
   ToolboxApi,
 } from '@daytonaio/api-client'
+import { parseApiError } from './utils/errors'
 
 /**
  * Supported language server types
@@ -39,12 +40,17 @@ export class LspServer {
    * @returns {Promise<void>}
    */
   public async start(): Promise<void> {
-    await this.toolboxApi.lspStart(
-      this.instance.id,
-      {
-        languageId: this.languageId,
-        pathToProject: this.pathToProject,
-      })
+    try {
+      await this.toolboxApi.lspStart(
+        this.instance.id,
+        {
+          languageId: this.languageId,
+          pathToProject: this.pathToProject,
+        },
+      )
+    } catch (error) {
+      throw new Error(`Failed to start language server: ${parseApiError(error)}`)
+    }
   }
 
   /**
@@ -52,13 +58,17 @@ export class LspServer {
    * @returns {Promise<void>}
    */
   public async stop(): Promise<void> {
-    await this.toolboxApi.lspStop(
-      this.instance.id,
-      {
-        languageId: this.languageId,
-        pathToProject: this.pathToProject,
-      },
-    )
+    try {
+      await this.toolboxApi.lspStop(
+        this.instance.id,
+        {
+          languageId: this.languageId,
+          pathToProject: this.pathToProject,
+        },
+      )
+    } catch (error) {
+      throw new Error(`Failed to stop language server: ${parseApiError(error)}`)
+    }
   }
 
   /**
@@ -67,14 +77,18 @@ export class LspServer {
    * @returns {Promise<void>}
    */
   public async didOpen(path: string): Promise<void> {
-    await this.toolboxApi.lspDidOpen(
-      this.instance.id,
-      {
-        languageId: this.languageId,
+    try {
+      await this.toolboxApi.lspDidOpen(
+        this.instance.id,
+        {
+          languageId: this.languageId,
         pathToProject: this.pathToProject,
-        uri: 'file://' + path,
-      },
-    )
+          uri: 'file://' + path,
+        },
+      )
+    } catch (error) {
+      throw new Error(`Failed to open file: ${parseApiError(error)}`)
+    }
   }
 
   /**
@@ -83,14 +97,18 @@ export class LspServer {
    * @returns {Promise<void>}
    */
   public async didClose(path: string): Promise<void> {
-    await this.toolboxApi.lspDidClose(
-      this.instance.id,
-      {
+    try {
+      await this.toolboxApi.lspDidClose(
+        this.instance.id,
+        {
         languageId: this.languageId,
         pathToProject: this.pathToProject,
-        uri: 'file://' + path,
-      },
-    )
+          uri: 'file://' + path,
+        },
+      )
+    } catch (error) {
+      throw new Error(`Failed to close file: ${parseApiError(error)}`)
+    }
   }
 
   /**
@@ -99,12 +117,17 @@ export class LspServer {
    * @returns {Promise<LspSymbol[]>} Array of document symbols
    */
   public async documentSymbols(path: string): Promise<LspSymbol[]> {
-    const response = await this.toolboxApi.lspDocumentSymbols(
-      this.instance.id,
-      this.languageId,
-      this.pathToProject,
-      'file://' + path,
-    )
+    let response;
+    try {
+      response = await this.toolboxApi.lspDocumentSymbols(
+        this.instance.id,
+        this.languageId,
+        this.pathToProject,
+        'file://' + path,
+      )
+    } catch (error) {
+      throw new Error(`Failed to get document symbols: ${parseApiError(error)}`)
+    }
     return response.data
   }
 
@@ -114,12 +137,17 @@ export class LspServer {
    * @returns {Promise<LspSymbol[]>} Array of matching symbols
    */
   public async workspaceSymbols(query: string): Promise<LspSymbol[]> {
-    const response = await this.toolboxApi.lspWorkspaceSymbols(
-      this.instance.id,
-      this.languageId,
-      this.pathToProject,
-      query,
-    )
+    let response;
+    try {
+      response = await this.toolboxApi.lspWorkspaceSymbols(
+        this.instance.id,
+        this.languageId,
+        this.pathToProject,
+        query,
+      )
+    } catch (error) {
+      throw new Error(`Failed to get workspace symbols: ${parseApiError(error)}`)
+    }
     return response.data
   }
 
@@ -133,15 +161,20 @@ export class LspServer {
     path: string,
     position: Position,
   ): Promise<CompletionList> {
-    const response = await this.toolboxApi.lspCompletions(
-      this.instance.id,
-      {
-        languageId: this.languageId,
-        pathToProject: this.pathToProject,
-        uri: 'file://' + path,
-        position,
-      },
-    )
+    let response;
+    try {
+      response = await this.toolboxApi.lspCompletions(
+        this.instance.id,
+        {
+          languageId: this.languageId,
+          pathToProject: this.pathToProject,
+          uri: 'file://' + path,
+          position,
+        },
+      )
+    } catch (error) {
+      throw new Error(`Failed to get completions: ${parseApiError(error)}`)
+    }
     return response.data
   }
 }

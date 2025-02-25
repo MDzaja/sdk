@@ -15,6 +15,7 @@ from daytona_api_client import (
     Workspace as WorkspaceInstance,
     ToolboxApi,
 )
+from daytona_sdk._utils.errors import parse_api_error
 
 
 class FileSystem:
@@ -36,9 +37,13 @@ class FileSystem:
             path: Path where the folder should be created
             mode: Folder permissions in octal format (e.g. "755")
         """
-        self.toolbox_api.create_folder(
-            workspace_id=self.instance.id, path=path, mode=mode
-        )
+        try:
+            self.toolbox_api.create_folder(
+                workspace_id=self.instance.id, path=path, mode=mode
+            )
+        except Exception as e:
+            raise Exception(f"Failed to create folder: {parse_api_error(e)}") from None
+
 
     def delete_file(self, path: str) -> None:
         """Deletes a file from the workspace.
@@ -46,9 +51,12 @@ class FileSystem:
         Args:
             path: Path to the file to delete
         """
-        self.toolbox_api.delete_file(
-            workspace_id=self.instance.id, path=path
-        )
+        try:
+            self.toolbox_api.delete_file(
+                workspace_id=self.instance.id, path=path
+            )
+        except Exception as e:
+            raise Exception(f"Failed to delete file: {parse_api_error(e)}") from None
 
     def download_file(self, path: str) -> bytes:
         """Downloads a file from the workspace.
@@ -59,9 +67,12 @@ class FileSystem:
         Returns:
             The file contents as bytes
         """
-        return self.toolbox_api.download_file(
-            workspace_id=self.instance.id, path=path
-        )
+        try:
+            return self.toolbox_api.download_file(
+                workspace_id=self.instance.id, path=path
+            )
+        except Exception as e:
+            raise Exception(f"Failed to download file: {parse_api_error(e)}") from None
 
     def find_files(self, path: str, pattern: str) -> List[Match]:
         """Searches for files matching a pattern.
@@ -73,9 +84,13 @@ class FileSystem:
         Returns:
             List of matches found in files
         """
-        return self.toolbox_api.find_in_files(
-            workspace_id=self.instance.id, path=path, pattern=pattern
-        )
+        try:
+            return self.toolbox_api.find_in_files(
+                workspace_id=self.instance.id, path=path, pattern=pattern
+            )
+        except Exception as e:
+            raise Exception(f"Failed to find files: {parse_api_error(e)}") from None
+
 
     def get_file_info(self, path: str) -> FileInfo:
         """Gets detailed information about a file.
@@ -86,9 +101,12 @@ class FileSystem:
         Returns:
             Detailed file information including size, permissions, etc.
         """
-        return self.toolbox_api.get_file_info(
-            workspace_id=self.instance.id, path=path
-        )
+        try:
+            return self.toolbox_api.get_file_info(
+                workspace_id=self.instance.id, path=path
+            )
+        except Exception as e:
+            raise Exception(f"Failed to get file info: {parse_api_error(e)}") from None
 
     def list_files(self, path: str) -> List[FileInfo]:
         """Lists files and directories in a given path.
@@ -99,9 +117,12 @@ class FileSystem:
         Returns:
             List of file and directory information
         """
-        return self.toolbox_api.list_files(
-            workspace_id=self.instance.id, path=path
-        )
+        try:
+            return self.toolbox_api.list_files(
+                workspace_id=self.instance.id, path=path
+            )
+        except Exception as e:
+            raise Exception(f"Failed to list files: {parse_api_error(e)}") from None
 
     def move_files(self, source: str, destination: str) -> None:
         """Moves files from one location to another.
@@ -110,12 +131,15 @@ class FileSystem:
             source: Source file/directory path
             destination: Destination path
         """
-        self.toolbox_api.move_file(
-            workspace_id=self.instance.id,
-            source=source,
-            destination=destination,
-        )
-
+        try:
+            self.toolbox_api.move_file(
+                workspace_id=self.instance.id,
+                source=source,
+                destination=destination,
+            )
+        except Exception as e:
+            raise Exception(f"Failed to move files: {parse_api_error(e)}") from None
+        
     def replace_in_files(
         self, files: List[str], pattern: str, new_value: str
     ) -> List[ReplaceResult]:
@@ -133,9 +157,12 @@ class FileSystem:
             files=files, new_value=new_value, pattern=pattern
         )
 
-        return self.toolbox_api.replace_in_files(
-            workspace_id=self.instance.id, replace_request=replace_request
-        )
+        try:
+            return self.toolbox_api.replace_in_files(
+                workspace_id=self.instance.id, replace_request=replace_request
+            )
+        except Exception as e:
+            raise Exception(f"Failed to replace in files: {parse_api_error(e)}") from None
 
     def search_files(self, path: str, pattern: str) -> SearchFilesResponse:
         """Searches for files matching a pattern in their names.
@@ -147,9 +174,12 @@ class FileSystem:
         Returns:
             Search results containing matching file paths
         """
-        return self.toolbox_api.search_files(
-            workspace_id=self.instance.id, path=path, pattern=pattern
-        )
+        try:
+            return self.toolbox_api.search_files(
+                workspace_id=self.instance.id, path=path, pattern=pattern
+            )
+        except Exception as e:
+            raise Exception(f"Failed to search files: {parse_api_error(e)}") from None
 
     def set_file_permissions(
         self, path: str, mode: str = None, owner: str = None, group: str = None
@@ -162,13 +192,16 @@ class FileSystem:
             owner: User owner of the file (optional)
             group: Group owner of the file (optional)
         """
-        self.toolbox_api.set_file_permissions(
-            workspace_id=self.instance.id,
-            path=path,
-            mode=mode,
-            owner=owner,
-            group=group,
-        )
+        try:
+            self.toolbox_api.set_file_permissions(
+                workspace_id=self.instance.id,
+                path=path,
+                mode=mode,
+                owner=owner,
+                group=group,
+            )
+        except Exception as e:
+            raise Exception(f"Failed to set file permissions: {parse_api_error(e)}") from None
 
     def upload_file(self, path: str, file: bytes) -> None:
         """Uploads a file to the workspace.
@@ -177,6 +210,10 @@ class FileSystem:
             path: Destination path in the workspace
             file: File contents as bytes
         """
-        self.toolbox_api.upload_file(
-            workspace_id=self.instance.id, path=path, file=file
-        )
+        try:
+            self.toolbox_api.upload_file(
+                workspace_id=self.instance.id, path=path, file=file
+            )
+        except Exception as e:
+            raise Exception(f"Failed to upload file: {parse_api_error(e)}") from None
+

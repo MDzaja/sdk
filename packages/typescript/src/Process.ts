@@ -8,6 +8,7 @@ import {
   Workspace,
 } from '@daytonaio/api-client'
 import { WorkspaceCodeToolbox } from './Workspace'
+import { parseApiError } from './utils/errors';
 
 /**
  * Handles process and code execution within a workspace
@@ -30,12 +31,16 @@ export class Process {
     cwd?: string,
     timeout?: number
   ): Promise<ExecuteResponse> {
-    const response = await this.toolboxApi.executeCommand(this.instance.id, {
-      command,
-      timeout,
-      cwd,
+    let response;
+    try {
+      response = await this.toolboxApi.executeCommand(this.instance.id, {
+        command,
+        timeout,
+        cwd,
     })
-
+    } catch (error) {
+      throw new Error(`Failed to execute command: ${parseApiError(error)}`)
+    }
     return response.data
   }
 
@@ -47,9 +52,14 @@ export class Process {
   public async codeRun(code: string): Promise<ExecuteResponse> {
     const runCommand = this.codeToolbox.getRunCommand(code)
 
-    const response = await this.toolboxApi.executeCommand(this.instance.id, {
-      command: runCommand,
-    })
+    let response;
+    try {
+      response = await this.toolboxApi.executeCommand(this.instance.id, {
+        command: runCommand,
+      })
+    } catch (error) {
+      throw new Error(`Failed to execute code: ${parseApiError(error)}`)
+    }
 
     return response.data
   }
@@ -60,9 +70,13 @@ export class Process {
    * @returns {Promise<ExecuteResponse>} Code execution results
    */
   public async createSession(sessionId: string): Promise<void> {
-    await this.toolboxApi.createSession(this.instance.id, {
-      sessionId,
-    })
+    try {
+      await this.toolboxApi.createSession(this.instance.id, {
+        sessionId,
+      })
+    } catch (error) {
+      throw new Error(`Failed to create session: ${parseApiError(error)}`)
+    }
   }
 
   /**
@@ -72,7 +86,13 @@ export class Process {
    * @returns {Promise<SessionExecuteResponse>} Command execution results
    */
   public async executeSessionCommand(sessionId: string, req: SessionExecuteRequest): Promise<SessionExecuteResponse> {
-    const response = await this.toolboxApi.executeSessionCommand(this.instance.id, sessionId, req)
+    let response;
+    try {
+      response = await this.toolboxApi.executeSessionCommand(this.instance.id, sessionId, req)
+    } catch (error) {
+      throw new Error(`Failed to execute session command: ${parseApiError(error)}`)
+    }
+
     return response.data
   }
 
@@ -83,7 +103,12 @@ export class Process {
    * @returns {Promise<string>} Command logs
    */
   public async getSessionCommandLogs(sessionId: string, commandId: string): Promise<string> {
-    const response = await this.toolboxApi.getSessionCommandLogs(this.instance.id, sessionId, commandId)
+    let response;
+    try {
+      response = await this.toolboxApi.getSessionCommandLogs(this.instance.id, sessionId, commandId)
+    } catch (error) {
+      throw new Error(`Failed to get session command logs: ${parseApiError(error)}`)
+    }
     return response.data
   }
 
@@ -93,7 +118,12 @@ export class Process {
    * @returns {Promise<Session>} Session
    */
   public async getSession(sessionId: string): Promise<Session> {
-    const response = await this.toolboxApi.getSession(this.instance.id, sessionId)
+    let response;
+    try {
+      response = await this.toolboxApi.getSession(this.instance.id, sessionId)
+    } catch (error) {
+      throw new Error(`Failed to get session: ${parseApiError(error)}`)
+    }
     return response.data
   }
 
@@ -104,7 +134,12 @@ export class Process {
    * @returns {Promise<Command>} Session command
    */
   public async getSessionCommand(sessionId: string, commandId: string): Promise<Command> {
-    const response = await this.toolboxApi.getSessionCommand(this.instance.id, sessionId, commandId)
+    let response;
+    try {
+      response = await this.toolboxApi.getSessionCommand(this.instance.id, sessionId, commandId)
+    } catch (error) {
+      throw new Error(`Failed to get session command: ${parseApiError(error)}`)
+    }
     return response.data
   }
 
@@ -113,7 +148,12 @@ export class Process {
    * @returns {Promise<Session[]>} List of sessions
    */
   public async listSessions(): Promise<Session[]> {
-    const response = await this.toolboxApi.listSessions(this.instance.id)
+    let response;
+    try {
+      response = await this.toolboxApi.listSessions(this.instance.id)
+    } catch (error) {
+      throw new Error(`Failed to list sessions: ${parseApiError(error)}`)
+    }
     return response.data
   }
 
@@ -122,6 +162,10 @@ export class Process {
    * @param {string} sessionId - Unique identifier for the session
    */
   public async deleteSession(sessionId: string): Promise<void> {
-    await this.toolboxApi.deleteSession(this.instance.id, sessionId)
+    try {
+      await this.toolboxApi.deleteSession(this.instance.id, sessionId)
+    } catch (error) {
+      throw new Error(`Failed to delete session: ${parseApiError(error)}`)
+    }
   }
 }

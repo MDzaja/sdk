@@ -9,6 +9,7 @@ import {
   CreateWorkspaceTargetEnum,
 } from '@daytonaio/api-client'
 import { WorkspaceTsCodeToolbox } from './code-toolbox/WorkspaceTsCodeToolbox'
+import { parseApiError } from './utils/errors'
 
 /**
  * Configuration options for initializing the Daytona client
@@ -143,19 +144,24 @@ export class Daytona {
       throw new Error('Timeout must be a non-negative number')
     }
 
-    const response = await this.workspaceApi.createWorkspace({
-        id: workspaceId,
-        name: workspaceId, //  todo: remove this after project refactor
-        image: params?.image,
-        user: params?.user,
-        env: params?.envVars || {},
+    let response;
+    try {
+      response = await this.workspaceApi.createWorkspace({
+          id: workspaceId,
+          name: workspaceId, //  todo: remove this after project refactor
+          image: params?.image,
+          user: params?.user,
+          env: params?.envVars || {},
         target: this.target,
         cpu: params?.resources?.cpu,
         gpu: params?.resources?.gpu,
         memory: params?.resources?.memory,
         disk: params?.resources?.disk,
         autoStopInterval: params?.autoStopInterval,
-    })
+      })
+    } catch (error) {
+      throw new Error(`Failed to create workspace: ${parseApiError(error)}`)
+    }
 
     const workspaceInstance = response.data
 
@@ -180,7 +186,12 @@ export class Daytona {
    * @returns {Promise<Workspace>} The workspace instance
    */
   public async get(workspaceId: string): Promise<Workspace> {
-    const response = await this.workspaceApi.getWorkspace(workspaceId)
+    let response;
+    try {
+      response = await this.workspaceApi.getWorkspace(workspaceId)
+    } catch (error) {
+      throw new Error(`Failed to get workspace: ${parseApiError(error)}`)
+    }
     const workspaceInstance = response.data
     const language = workspaceInstance.labels && workspaceInstance.labels[`code-toolbox-language`]
     const codeToolbox = this.getCodeToolbox(language as CodeLanguage)
@@ -193,7 +204,12 @@ export class Daytona {
    * @returns {Promise<Workspace[]>} The list of workspaces
    */
   public async list(): Promise<Workspace[]> {
-    const response = await this.workspaceApi.listWorkspaces()
+    let response;
+    try {
+      response = await this.workspaceApi.listWorkspaces()
+    } catch (error) {
+      throw new Error(`Failed to list workspaces: ${parseApiError(error)}`)
+    }
     return response.data.map((workspace) => {
       const language = workspace.labels?.[`code-toolbox-language`] as CodeLanguage
       if (language && !['python', 'javascript', 'typescript'].includes(language)) {
@@ -232,7 +248,11 @@ export class Daytona {
    * @returns {Promise<void>}
    */
   public async remove(workspace: Workspace) {
-    await this.workspaceApi.deleteWorkspace(workspace.id, true)
+    try {
+      await this.workspaceApi.deleteWorkspace(workspace.id, true)
+    } catch (error) {
+      throw new Error(`Failed to remove workspace: ${parseApiError(error)}`)
+    }
   }
 
   /**

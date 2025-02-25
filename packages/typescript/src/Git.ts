@@ -5,6 +5,7 @@ import {
   GitStatus,
 } from '@daytonaio/api-client'
 import { Workspace } from './Workspace'
+import { parseApiError } from './utils/errors'
 
 /**
  * Provides Git operations within a workspace
@@ -24,10 +25,14 @@ export class Git {
    * @returns {Promise<void>}
    */
   public async add(path: string, files: string[]): Promise<void> {
-    await this.toolboxApi.gitAddFiles(this.instance.id, {
-      path,
-      files,
-    })
+    try {
+      await this.toolboxApi.gitAddFiles(this.instance.id, {
+        path,
+        files,
+      })
+    } catch (error) {
+      throw new Error(`Failed to add files: ${parseApiError(error)}`)
+    }
   }
 
   /**
@@ -36,7 +41,12 @@ export class Git {
    * @returns {Promise<ListBranchResponse>} List of branches
    */
   public async branches(path: string): Promise<ListBranchResponse> {
-    const response = await this.toolboxApi.gitListBranches(this.instance.id, path)
+    let response;
+    try {
+      response = await this.toolboxApi.gitListBranches(this.instance.id, path)
+    } catch (error) {
+      throw new Error(`Failed to list branches: ${parseApiError(error)}`)
+    }
     return response.data
   }
 
@@ -58,15 +68,18 @@ export class Git {
     username?: string,
     password?: string,
   ): Promise<void> {
-    await this.toolboxApi.gitCloneRepository(this.instance.id, {
+    try {
+      await this.toolboxApi.gitCloneRepository(this.instance.id, {
         url: url,
         branch: branch,
         path,
         username,
         password,
         commit_id: commitId
-      },
-    )
+      })
+    } catch (error) {
+      throw new Error(`Failed to clone repository: ${parseApiError(error)}`)
+    }
   }
 
   /**
@@ -83,12 +96,16 @@ export class Git {
     author: string,
     email: string,
   ): Promise<void> {
-    await this.toolboxApi.gitCommitChanges(this.instance.id, {
-      path,
-      message,
-      author,
-      email,
-    })
+    try {
+      await this.toolboxApi.gitCommitChanges(this.instance.id, {
+        path,
+        message,
+        author,
+        email,
+      })
+    } catch (error) {
+      throw new Error(`Failed to commit changes: ${parseApiError(error)}`)
+    }
   }
 
   /**
@@ -103,11 +120,15 @@ export class Git {
     username?: string,
     password?: string,
   ): Promise<void> {
-    await this.toolboxApi.gitPushChanges(this.instance.id, {
-      path,
-      username,
-      password,
-    })
+    try {
+      await this.toolboxApi.gitPushChanges(this.instance.id, {
+        path,
+        username,
+        password,
+      })
+    } catch (error) {
+      throw new Error(`Failed to push changes: ${parseApiError(error)}`)
+    }
   }
 
   /**
@@ -122,11 +143,15 @@ export class Git {
     username?: string,
     password?: string,
   ): Promise<void> {
-    await this.toolboxApi.gitPullChanges(this.instance.id, {
-      path,
-      username,
-      password,
-    })
+    try {
+      await this.toolboxApi.gitPullChanges(this.instance.id, {
+        path,
+        username,
+        password,
+      })
+    } catch (error) {
+      throw new Error(`Failed to pull changes: ${parseApiError(error)}`)
+    }
   }
 
   /**
@@ -135,7 +160,12 @@ export class Git {
    * @returns {Promise<GitStatus>} Repository status information
    */
   public async status(path: string): Promise<GitStatus> {
-    const response = await this.toolboxApi.gitGetStatus(this.instance.id, path)
+    let response;
+    try {
+      response = await this.toolboxApi.gitGetStatus(this.instance.id, path)
+    } catch (error) {
+      throw new Error(`Failed to get status: ${parseApiError(error)}`)
+    }
     return response.data
   }
 }

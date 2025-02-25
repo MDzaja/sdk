@@ -5,6 +5,7 @@ import { Git } from './Git'
 //  import { LspLanguageId, LspServer } from './LspServer'
 import { Process } from './Process'
 import { LspLanguageId, LspServer } from './LspServer'
+import { parseApiError } from './utils/errors'
 
 /**
  * Resources allocated to a workspace
@@ -101,9 +102,14 @@ export class Workspace {
    * @returns {Promise<string>} The absolute path to the workspace root
    */
   public async getWorkspaceRootDir(): Promise<string | undefined> {
-    const response = await this.toolboxApi.getProjectDir(
-      this.instance.id,
-    )
+    let response;
+    try {
+      response = await this.toolboxApi.getProjectDir(
+        this.instance.id,
+      )
+    } catch (error) {
+      throw new Error(`Failed to get workspace root directory: ${parseApiError(error)}`)
+    }
     return response.data.dir
   }
 
@@ -130,7 +136,11 @@ export class Workspace {
    * @param {Record<string, string>} labels - The labels to set
    */
   public async setLabels(labels: Record<string, string>): Promise<void> {
-    await this.workspaceApi.replaceLabels(this.instance.id, { labels })
+    try {
+      await this.workspaceApi.replaceLabels(this.instance.id, { labels })
+    } catch (error) {
+      throw new Error(`Failed to set labels: ${parseApiError(error)}`)
+    }
   }
   
   /**
@@ -141,7 +151,11 @@ export class Workspace {
     if (timeout != undefined && timeout < 0) {
       throw new Error('Timeout must be a non-negative number');
     }
-    await this.workspaceApi.startWorkspace(this.instance.id)
+    try {
+      await this.workspaceApi.startWorkspace(this.instance.id)
+    } catch (error) {
+      throw new Error(`Failed to start workspace: ${parseApiError(error)}`)
+    }
     await this.waitUntilStarted(timeout)
   }
 
@@ -150,7 +164,11 @@ export class Workspace {
    * @returns {Promise<void>}
    */
   public async stop(): Promise<void> {
-    await this.workspaceApi.stopWorkspace(this.instance.id)
+    try {
+      await this.workspaceApi.stopWorkspace(this.instance.id)
+    } catch (error) {
+      throw new Error(`Failed to stop workspace: ${parseApiError(error)}`)
+    }
     await this.waitUntilStopped()
   }
 
@@ -159,7 +177,11 @@ export class Workspace {
    * @returns {Promise<void>}
    */
   public async delete(): Promise<void> {
-    await this.workspaceApi.deleteWorkspace(this.instance.id, true)
+    try {
+      await this.workspaceApi.deleteWorkspace(this.instance.id, true)
+    } catch (error) {
+      throw new Error(`Failed to delete workspace: ${parseApiError(error)}`)
+    }
   }
 
   public async waitUntilStarted(timeout: number = 60) {
@@ -171,7 +193,12 @@ export class Workspace {
     const startTime = Date.now();
 
     while (timeout === 0 || (Date.now() - startTime) < (timeout * 1000)) {
-      const response = await this.workspaceApi.getWorkspace(this.id);
+      let response;
+      try {
+        response = await this.workspaceApi.getWorkspace(this.id);
+      } catch (error) {
+        throw new Error(`Failed to get workspace: ${parseApiError(error)}`)
+      }
       const state = response.data.state;
 
       if (state === 'started') {
@@ -193,7 +220,12 @@ export class Workspace {
     let attempts = 0;
 
     while (attempts < maxAttempts) {
-      const response = await this.workspaceApi.getWorkspace(this.id);
+      let response;
+      try {
+        response = await this.workspaceApi.getWorkspace(this.id);
+      } catch (error) {
+        throw new Error(`Failed to get workspace: ${parseApiError(error)}`)
+      }
       const state = response.data.state;
 
       if (state === 'stopped') {
@@ -216,7 +248,12 @@ export class Workspace {
    * @returns {Promise<WorkspaceInfo>} Structured workspace information
    */
   public async info(): Promise<WorkspaceInfo> {
-    const response = await this.workspaceApi.getWorkspace(this.id)
+    let response;
+    try {
+      response = await this.workspaceApi.getWorkspace(this.id)
+    } catch (error) {
+      throw new Error(`Failed to get workspace info: ${parseApiError(error)}`)
+    }
     const instance = response.data
     const providerMetadata = JSON.parse(instance.info?.providerMetadata || '{}')
 
@@ -258,7 +295,11 @@ export class Workspace {
       throw new Error('autoStopInterval must be a non-negative integer');
     }
     
-    await this.workspaceApi.setAutostopInterval(this.id, interval)
+    try {
+      await this.workspaceApi.setAutostopInterval(this.id, interval)
+    } catch (error) {
+      throw new Error(`Failed to set auto-stop interval: ${parseApiError(error)}`)
+    }
     this.instance.autoStopInterval = interval
   }
 

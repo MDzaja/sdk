@@ -15,6 +15,7 @@ from daytona_api_client import (
     LspDocumentRequest,
     LspCompletionParams
 )
+from daytona_sdk._utils.errors import parse_api_error
 
 LspLanguageId = Literal["typescript"]
 
@@ -55,26 +56,32 @@ class LspServer:
 
     def start(self) -> None:
         """Starts the language server."""
-        self.toolbox_api.lsp_start(
-            workspace_id=self.instance.id,
-            lsp_server_request=LspServerRequest(
+        try:
+            self.toolbox_api.lsp_start(
+                workspace_id=self.instance.id,
+                lsp_server_request=LspServerRequest(
                 language_id=self.language_id,
-                path_to_project=self.path_to_project,
-            ),
-        )
+                    path_to_project=self.path_to_project,
+                ),
+            )
+        except Exception as e:
+            raise Exception(f"Failed to start language server: {parse_api_error(e)}") from None
 
     def stop(self) -> None:
         """Stops the language server.
         
         Should be called when the LSP server is no longer needed to free up resources.
         """
-        self.toolbox_api.lsp_stop(
-            workspace_id=self.instance.id,
-            lsp_server_request=LspServerRequest(
+        try:
+            self.toolbox_api.lsp_stop(
+                workspace_id=self.instance.id,
+                lsp_server_request=LspServerRequest(
                 language_id=self.language_id,
-                path_to_project=self.path_to_project,
-            ),
-        )
+                    path_to_project=self.path_to_project,
+                ),
+            )
+        except Exception as e:
+            raise Exception(f"Failed to stop language server: {parse_api_error(e)}") from None
 
     def did_open(self, path: str) -> None:
         """Notifies the language server that a file has been opened.
@@ -85,14 +92,17 @@ class LspServer:
         This method should be called when a file is opened in the editor to enable
         language features like diagnostics and completions for that file.
         """
-        self.toolbox_api.lsp_did_open(
-            workspace_id=self.instance.id,
-            lsp_document_request=LspDocumentRequest(
+        try:
+            self.toolbox_api.lsp_did_open(
+                workspace_id=self.instance.id,
+                lsp_document_request=LspDocumentRequest(
                 language_id=self.language_id,
                 path_to_project=self.path_to_project,
                 uri=f"file://{path}",
-            ),
-        )
+                ),
+            )
+        except Exception as e:
+            raise Exception(f"Failed to open document: {parse_api_error(e)}") from None
 
     def did_close(self, path: str) -> None:
         """Notifies the language server that a file has been closed.
@@ -103,14 +113,17 @@ class LspServer:
         This method should be called when a file is closed in the editor to allow
         the language server to clean up any resources associated with that file.
         """
-        self.toolbox_api.lsp_did_close(
-            workspace_id=self.instance.id,
-            lsp_document_request=LspDocumentRequest(
+        try:
+            self.toolbox_api.lsp_did_close(
+                workspace_id=self.instance.id,
+                lsp_document_request=LspDocumentRequest(
                 language_id=self.language_id,
                 path_to_project=self.path_to_project,
                 uri=f"file://{path}",
-            ),
-        )
+                ),
+            )
+        except Exception as e:
+            raise Exception(f"Failed to close document: {parse_api_error(e)}") from None
 
     def document_symbols(self, path: str) -> List[LspSymbol]:
         """Gets symbol information from a document.
@@ -121,12 +134,15 @@ class LspServer:
         Returns:
             List of symbols (functions, classes, variables, etc.) in the document
         """
-        return self.toolbox_api.lsp_document_symbols(
-            workspace_id=self.instance.id,
-            language_id=self.language_id,
-            path_to_project=self.path_to_project,
-            uri=f"file://{path}",
-        )
+        try:
+            return self.toolbox_api.lsp_document_symbols(
+                workspace_id=self.instance.id,
+                language_id=self.language_id,
+                path_to_project=self.path_to_project,
+                uri=f"file://{path}",
+            )
+        except Exception as e:
+            raise Exception(f"Failed to get symbols from document: {parse_api_error(e)}") from None
 
     def workspace_symbols(self, query: str) -> List[LspSymbol]:
         """Searches for symbols across the workspace.
@@ -137,12 +153,15 @@ class LspServer:
         Returns:
             List of matching symbols from all files in the workspace
         """
-        return self.toolbox_api.lsp_workspace_symbols(
-            workspace_id=self.instance.id,
-            language_id=self.language_id,
-            path_to_project=self.path_to_project,
-            query=query,
-        )
+        try:
+            return self.toolbox_api.lsp_workspace_symbols(
+                workspace_id=self.instance.id,
+                language_id=self.language_id,
+                path_to_project=self.path_to_project,
+                query=query,
+            )
+        except Exception as e:
+            raise Exception(f"Failed to get symbols across the workspace: {parse_api_error(e)}") from None
 
     def completions(self, path: str, position: Position) -> CompletionList:
         """Gets completion suggestions at a position in a file.
@@ -159,12 +178,15 @@ class LspServer:
             - Property names
             - etc.
         """
-        return self.toolbox_api.lsp_completions(
-            workspace_id=self.instance.id,
-            lsp_completion_params=LspCompletionParams(
+        try:
+            return self.toolbox_api.lsp_completions(
+                workspace_id=self.instance.id,
+                lsp_completion_params=LspCompletionParams(
                 language_id=self.language_id,
-                path_to_project=self.path_to_project,
-                uri=f"file://{path}",
-                position=position,
-            ),
-        )
+                    path_to_project=self.path_to_project,
+                    uri=f"file://{path}",
+                    position=position,
+                ),
+            )
+        except Exception as e:
+            raise Exception(f"Failed to get completions: {parse_api_error(e)}") from None

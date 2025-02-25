@@ -19,7 +19,7 @@ from daytona_api_client import (
     SessionExecuteRequest,
     SessionExecuteResponse
 )
-
+from daytona_sdk._utils.errors import parse_api_error
 from .code_toolbox.workspace_python_code_toolbox import WorkspacePythonCodeToolbox
 from .code_toolbox.workspace_ts_code_toolbox import WorkspaceTsCodeToolbox
 from .workspace import Workspace
@@ -172,10 +172,10 @@ class Daytona:
 
         except Exception as e:
             try:
-                self.workspace_api.remove_workspace(workspace_id=workspace_id)
+                self.workspace_api.delete_workspace(workspace_id=workspace_id, force=True)
             except:
                 pass
-            raise Exception(f"Failed to create workspace: {str(e)}") from e
+            raise Exception(f"Failed to create workspace: {parse_api_error(e)}") from None
 
     def _get_code_toolbox(self, params: Optional[CreateWorkspaceParams] = None):
         """Helper method to get the appropriate code toolbox
@@ -203,7 +203,10 @@ class Daytona:
         Args:
             workspace: The workspace to remove
         """
-        return self.workspace_api.delete_workspace(workspace_id=workspace.id, force=True)
+        try:
+            self.workspace_api.delete_workspace(workspace_id=workspace.id, force=True)
+        except Exception as e:
+            raise Exception(f"Failed to remove workspace: {parse_api_error(e)}") from None
 
     def get_current_workspace(self, workspace_id: str) -> Workspace:
         """
@@ -221,8 +224,12 @@ class Daytona:
         if not workspace_id:
             raise ValueError("workspace_id is required")
 
-        # Get the workspace instance
-        workspace_instance = self.workspace_api.get_workspace(workspace_id=workspace_id)
+        try:
+            # Get the workspace instance
+            workspace_instance = self.workspace_api.get_workspace(
+                workspace_id=workspace_id)
+        except Exception as e:
+            raise Exception(f"Failed to get workspace: {parse_api_error(e)}") from None
 
         # Create and return workspace with Python code toolbox as default
         code_toolbox = WorkspacePythonCodeToolbox()
@@ -236,7 +243,11 @@ class Daytona:
     
     def list(self) -> List[Workspace]:
         """List all workspaces."""
-        workspaces = self.workspace_api.list_workspaces()
+        try:
+            workspaces = self.workspace_api.list_workspaces()
+        except Exception as e:
+            raise Exception(f"Failed to list workspaces: {parse_api_error(e)}") from None
+
         return [
             Workspace(
                 workspace.id,

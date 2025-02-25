@@ -17,6 +17,8 @@ from daytona_api_client import (
     CreateSessionRequest,
     Command
 )
+
+from daytona_sdk._utils.errors import parse_api_error
 from .code_toolbox.workspace_python_code_toolbox import WorkspacePythonCodeToolbox
 
 
@@ -56,10 +58,13 @@ class Process:
             timeout=timeout
         )
         
-        return self.toolbox_api.execute_command(
-            workspace_id=self.instance.id,
-            execute_request=execute_request
-        )
+        try:
+            return self.toolbox_api.execute_command(
+                workspace_id=self.instance.id,
+                execute_request=execute_request
+            )
+        except Exception as e:
+            raise Exception(f"Failed to execute command: {parse_api_error(e)}") from None
 
     def code_run(self, code: str) -> ExecuteResponse:
         """Executes code in the workspace using the appropriate language runtime.
@@ -80,10 +85,13 @@ class Process:
             session_id: Unique identifier for the session
         """
         request = CreateSessionRequest(sessionId=session_id)
-        self.toolbox_api.create_session(
-            workspace_id=self.instance.id,
-            create_session_request=request
-        )
+        try:
+            self.toolbox_api.create_session(
+                workspace_id=self.instance.id,
+                create_session_request=request
+            )
+        except Exception as e:
+            raise Exception(f"Failed to create session: {parse_api_error(e)}") from None
 
     def get_session(self, session_id: str) -> Session:
         """Gets a session in the workspace.
@@ -94,10 +102,13 @@ class Process:
         Returns:
             Session
         """
-        return self.toolbox_api.get_session(
-            workspace_id=self.instance.id,
-            session_id=session_id
-        )
+        try:
+            return self.toolbox_api.get_session(
+                workspace_id=self.instance.id,
+                session_id=session_id
+            )
+        except Exception as e:
+            raise Exception(f"Failed to get session: {parse_api_error(e)}") from None
     
     def get_session_command(self, session_id: str, command_id: str) -> Command:
         """Gets a command in the session.
@@ -109,11 +120,14 @@ class Process:
         Returns:
             Command
         """
-        return self.toolbox_api.get_session_command(
-            workspace_id=self.instance.id,
-            session_id=session_id,
-            command_id=command_id
-        )
+        try:
+            return self.toolbox_api.get_session_command(
+                workspace_id=self.instance.id,
+                session_id=session_id,
+                command_id=command_id
+            )
+        except Exception as e:
+            raise Exception(f"Failed to get session command: {parse_api_error(e)}") from None
 
     def execute_session_command(self, session_id: str, req: SessionExecuteRequest) -> SessionExecuteResponse:
         """Executes a command in the session.
@@ -125,11 +139,14 @@ class Process:
         Returns:
             Command execution results
         """
-        return self.toolbox_api.execute_session_command(
-            workspace_id=self.instance.id,
-            session_id=session_id,
-            session_execute_request=req
-        )
+        try:
+            return self.toolbox_api.execute_session_command(
+                workspace_id=self.instance.id,
+                session_id=session_id,
+                session_execute_request=req
+            )
+        except Exception as e:
+            raise Exception(f"Failed to execute session command: {parse_api_error(e)}") from None
 
     def get_session_command_logs(self, session_id: str, command_id: str) -> str:
         """Gets the logs for a command in the session.
@@ -141,11 +158,14 @@ class Process:
         Returns:
             Command logs
         """
-        return self.toolbox_api.get_session_command_logs(
-            workspace_id=self.instance.id,
-            session_id=session_id,
-            command_id=command_id
-        )
+        try:
+            return self.toolbox_api.get_session_command_logs(
+                workspace_id=self.instance.id,
+                session_id=session_id,
+                command_id=command_id
+            )
+        except Exception as e:
+            raise Exception(f"Failed to get session command logs: {parse_api_error(e)}") from None
 
     def list_sessions(self) -> List[Session]:
         """Lists all sessions in the workspace.
@@ -153,9 +173,12 @@ class Process:
         Returns:
             List of sessions
         """
-        return self.toolbox_api.list_sessions(
-            workspace_id=self.instance.id
-        )
+        try:
+            return self.toolbox_api.list_sessions(
+                workspace_id=self.instance.id
+            )
+        except Exception as e:
+            raise Exception(f"Failed to list sessions: {parse_api_error(e)}") from None
 
     def delete_session(self, session_id: str) -> None:
         """Deletes a session in the workspace.
@@ -163,9 +186,12 @@ class Process:
         Args:
             session_id: Unique identifier for the session
         """
-        self.toolbox_api.delete_session(
-            workspace_id=self.instance.id,
-            session_id=session_id
-        )
+        try:
+            self.toolbox_api.delete_session(
+                workspace_id=self.instance.id,
+                session_id=session_id
+            )
+        except Exception as e:
+            raise Exception(f"Failed to delete session: {parse_api_error(e)}") from None
 
     

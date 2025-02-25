@@ -7,6 +7,7 @@ import {
   Workspace as WorkspaceInstance,
   ToolboxApi,
 } from '@daytonaio/api-client'
+import { parseApiError } from './utils/errors'
 
 /**
  * Parameters for setting file permissions
@@ -38,7 +39,12 @@ export class FileSystem {
    * @returns {Promise<void>}
    */
   public async createFolder(path: string, mode: string): Promise<void> {
-    const response = await this.toolboxApi.createFolder(this.instance.id, path, mode)
+    let response;
+    try {
+      response = await this.toolboxApi.createFolder(this.instance.id, path, mode)
+    } catch (error) {
+      throw new Error(`Failed to create folder: ${parseApiError(error)}`)
+    }
     return response.data
   }
 
@@ -48,7 +54,12 @@ export class FileSystem {
    * @returns {Promise<void>}
    */
   public async deleteFile(path: string): Promise<void> {
-    const response = await this.toolboxApi.deleteFile(this.instance.id, path)
+    let response;
+    try {
+      response = await this.toolboxApi.deleteFile(this.instance.id, path)
+    } catch (error) {
+      throw new Error(`Failed to delete file: ${parseApiError(error)}`)
+    }
     return response.data
   }
 
@@ -58,7 +69,12 @@ export class FileSystem {
    * @returns {Promise<Blob>} The file contents as a Blob
    */
   public async downloadFile(path: string): Promise<Blob> {
-    const response = await this.toolboxApi.downloadFile(this.instance.id, path)
+    let response;
+    try {
+      response = await this.toolboxApi.downloadFile(this.instance.id, path)
+    } catch (error) {
+      throw new Error(`Failed to download file: ${parseApiError(error)}`)
+    }
     return response.data
   }
 
@@ -69,7 +85,12 @@ export class FileSystem {
    * @returns {Promise<Array<Match>>} Array of matching files
    */
   public async findFiles(path: string, pattern: string): Promise<Array<Match>> {
-    const response = await this.toolboxApi.findInFiles(this.instance.id, path, pattern)
+    let response;
+    try {
+      response = await this.toolboxApi.findInFiles(this.instance.id, path, pattern)
+    } catch (error) {
+      throw new Error(`Failed to find files: ${parseApiError(error)}`)
+    }
     return response.data
   }
 
@@ -79,7 +100,12 @@ export class FileSystem {
    * @returns {Promise<FileInfo>} File information
    */
   public async getFileDetails(path: string): Promise<FileInfo> {
-    const response = await this.toolboxApi.getFileInfo(this.instance.id, path)
+    let response;
+    try {
+      response = await this.toolboxApi.getFileInfo(this.instance.id, path)
+    } catch (error) {
+      throw new Error(`Failed to get file details: ${parseApiError(error)}`)
+    }
     return response.data
   }
 
@@ -89,7 +115,12 @@ export class FileSystem {
    * @returns {Promise<FileInfo[]>} Array of file information
    */
   public async listFiles(path: string): Promise<FileInfo[]> {
-    const response = await this.toolboxApi.listFiles(this.instance.id, path)
+    let response;
+    try {
+      response = await this.toolboxApi.listFiles(this.instance.id, path)
+    } catch (error) {
+      throw new Error(`Failed to list files: ${parseApiError(error)}`)
+    }
     return response.data
   }
 
@@ -100,7 +131,12 @@ export class FileSystem {
    * @returns {Promise<void>}
    */
   public async moveFiles(source: string, destination: string): Promise<void> {
-    const response = await this.toolboxApi.moveFile(this.instance.id, source, destination)
+    let response;
+    try {
+      response = await this.toolboxApi.moveFile(this.instance.id, source, destination)
+    } catch (error) {
+      throw new Error(`Failed to move files: ${parseApiError(error)}`)
+    }
     return response.data
   }
 
@@ -122,7 +158,12 @@ export class FileSystem {
       pattern,
     }
 
-    const response = await this.toolboxApi.replaceInFiles(this.instance.id, replaceRequest)
+    let response;
+    try {
+      response = await this.toolboxApi.replaceInFiles(this.instance.id, replaceRequest)
+    } catch (error) {
+      throw new Error(`Failed to replace in files: ${parseApiError(error)}`)
+    }
     return response.data
   }
 
@@ -136,7 +177,12 @@ export class FileSystem {
     path: string,
     pattern: string,
   ): Promise<SearchFilesResponse> {
-    const response = await this.toolboxApi.searchFiles(this.instance.id, path, pattern)
+    let response;
+    try {
+      response = await this.toolboxApi.searchFiles(this.instance.id, path, pattern)
+    } catch (error) {
+      throw new Error(`Failed to search files: ${parseApiError(error)}`)
+    }
     return response.data
   }
 
@@ -150,7 +196,12 @@ export class FileSystem {
     path: string,
     permissions: FilePermissionsParams,
   ): Promise<void> {
-    const response = await this.toolboxApi.setFilePermissions(this.instance.id, path, permissions.owner!, permissions.group!, permissions.mode!)
+    let response;
+    try {
+      response = await this.toolboxApi.setFilePermissions(this.instance.id, path, permissions.owner!, permissions.group!, permissions.mode!)
+    } catch (error) {
+      throw new Error(`Failed to set file permissions: ${parseApiError(error)}`)
+    }
     return response.data
   }
 
@@ -161,7 +212,12 @@ export class FileSystem {
    * @returns {Promise<void>}
    */
   public async uploadFile(path: string, file: File): Promise<void> {
-    const response = await this.toolboxApi.uploadFile(this.instance.id, path, file)
+    let response;
+    try {
+      response = await this.toolboxApi.uploadFile(this.instance.id, path, file)
+    } catch (error) {
+      throw new Error(`Failed to upload file: ${parseApiError(error)}`)
+    }
     return response.data
   }
 }

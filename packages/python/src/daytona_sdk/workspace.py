@@ -8,6 +8,8 @@ Git, process execution, and LSP functionality.
 import json
 import time
 from typing import Dict, Optional
+
+from daytona_sdk._utils.errors import parse_api_error
 from .filesystem import FileSystem
 from .git import Git
 from .process import Process
@@ -130,10 +132,13 @@ class Workspace:
         Returns:
             The absolute path to the workspace root
         """
-        response = self.toolbox_api.get_project_dir(
-            workspace_id=self.instance.id
-        )
-        return response.dir
+        try:
+            response = self.toolbox_api.get_project_dir(
+                workspace_id=self.instance.id
+            )
+            return response.dir
+        except Exception as e:
+            raise Exception(f"Failed to get workspace root directory: {parse_api_error(e)}") from None
 
     def create_lsp_server(
         self, language_id: LspLanguageId, path_to_project: str
@@ -165,7 +170,10 @@ class Workspace:
         # Convert all values to strings and create the expected labels structure
         string_labels = {k: str(v).lower() if isinstance(v, bool) else str(v) for k, v in labels.items()}
         labels_payload = {"labels": string_labels}
-        return self.workspace_api.replace_labels(self.id, labels_payload)
+        try:
+            return self.workspace_api.replace_labels(self.id, labels_payload)
+        except Exception as e:
+            raise Exception(f"Failed to set labels: {parse_api_error(e)}") from None
 
     def start(self, timeout: Optional[float] = None):
         """Starts the workspace.
@@ -177,13 +185,20 @@ class Workspace:
             ValueError: If timeout is negative
             Exception: If workspace fails to start or times out
         """
-        self.workspace_api.start_workspace(self.id)
+        try:
+            self.workspace_api.start_workspace(self.id)
+        except Exception as e:
+            raise Exception(f"Failed to start workspace: {parse_api_error(e)}") from None
+        
         self.wait_for_workspace_start(timeout)
-
 
     def stop(self):
         """Stops the workspace."""
-        self.workspace_api.stop_workspace(self.id)
+        try:
+            self.workspace_api.stop_workspace(self.id)
+        except Exception as e:
+            raise Exception(f"Failed to stop workspace: {parse_api_error(e)}") from None
+        
         self.wait_for_workspace_stop()
 
     def wait_for_workspace_start(self, timeout: float = 60) -> None:
@@ -204,7 +219,11 @@ class Workspace:
         start_time = time.time()
 
         while timeout == 0 or (time.time() - start_time) < timeout:
-            response = self.workspace_api.get_workspace(self.id)
+            try:
+                response = self.workspace_api.get_workspace(self.id)
+            except Exception as e:
+                raise Exception(f"Failed to get workspace: {parse_api_error(e)}") from None
+                
             provider_metadata = json.loads(response.info.provider_metadata)
             state = provider_metadata.get('state', '')
 
@@ -231,7 +250,11 @@ class Workspace:
 
         while attempts < max_attempts:
             try:
-                workspace_check = self.workspace_api.get_workspace(self.id)
+                try:
+                    workspace_check = self.workspace_api.get_workspace(self.id)
+                except Exception as e:
+                    raise Exception(f"Failed to get workspace: {parse_api_error(e)}") from None
+
                 provider_metadata = json.loads(workspace_check.info.provider_metadata)
                 state = provider_metadata.get('state')
 
@@ -241,7 +264,6 @@ class Workspace:
                 if state == "error":
                     raise Exception(f"Workspace {self.id} failed to stop with status: {state}")
             except Exception as e:
-                print(f"Exception: {e}")
                 # If there's a validation error, continue waiting
                 if "validation error" not in str(e):
                     raise e
@@ -264,7 +286,11 @@ class Workspace:
         if not isinstance(interval, int) or interval < 0:
             raise ValueError("Auto-stop interval must be a non-negative integer")
 
-        self.workspace_api.set_autostop_interval(self.id, interval)
+        try:
+            self.workspace_api.set_autostop_interval(self.id, interval)
+        except Exception as e:
+            raise Exception(f"Failed to set auto-stop interval: {parse_api_error(e)}") from None
+        
         self.instance.auto_stop_interval = interval
 
     def get_preview_link(self, port: int) -> str:
