@@ -11,7 +11,6 @@ import {
 import { WorkspaceTsCodeToolbox } from './code-toolbox/WorkspaceTsCodeToolbox'
 import axios, { AxiosError } from 'axios'
 import { DaytonaError } from './errors/DaytonaError'
-import { TimeoutError } from './utils/errors'
 
 /**
  * Configuration options for initializing the Daytona client
@@ -128,11 +127,17 @@ export class Daytona {
         return response
       },
       (error) => {
-        const errorMessage =
-          error.response?.data?.message ||
-          error.response?.data ||
-          error.message ||
-          String(error);
+        let errorMessage: string;
+
+        if (error instanceof AxiosError && error.message.includes('timeout of')) {
+          errorMessage = "Operation timed out"
+        } else {
+          errorMessage =
+            error.response?.data?.message ||
+            error.response?.data ||
+            error.message ||
+            String(error);
+        }
 
         throw new DaytonaError(errorMessage);
       }
@@ -152,7 +157,7 @@ export class Daytona {
     const startTime = Date.now();
 
     if (timeout < 0) {
-      throw new Error('Timeout must be a non-negative number');
+      throw new DaytonaError('Timeout must be a non-negative number');
     }
 
     if (params?.timeout && params.timeout < 0) {
@@ -169,7 +174,7 @@ export class Daytona {
     const effectiveTimeout = params.timeout || timeout
 
     if (params.autoStopInterval !== undefined && (!Number.isInteger(params.autoStopInterval) || params.autoStopInterval < 0)) {
-      throw new Error('autoStopInterval must be a non-negative integer');
+      throw new DaytonaError('autoStopInterval must be a non-negative integer');
     }
 
     const codeToolbox = this.getCodeToolbox(params?.language)
@@ -212,11 +217,10 @@ export class Daytona {
       return workspace
     } catch (error) {
       void this.workspaceApi.deleteWorkspace(params.id!, true).catch(() => {});
-      if (error instanceof AxiosError && error.message.includes('timeout of') || error instanceof TimeoutError) {
-        throw new TimeoutError(`Failed to create and start workspace within ${effectiveTimeout} seconds.`)
-      } else {
-        throw error
+      if (error instanceof DaytonaError && error.message.includes("Operation timed out")) {
+        throw new DaytonaError(`Failed to create and start workspace within ${effectiveTimeout} seconds. Operation timed out.`)
       }
+      throw error
     }
   }
 
