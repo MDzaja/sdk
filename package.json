@@ -11,7 +11,8 @@
     "exec-command-example": "npx dotenvx run -f .env.local -- npx ts-node examples/ts/exec-command/src/",
     "docs": "npm run docs:python && npm run docs:typescript",
     "docs:python": "cd packages/python && npm run docs && cd ../..",
-    "docs:typescript": "cd packages/typescript && npm run docs && cd ../.."
+    "docs:typescript": "cd packages/typescript && npm run docs && cd ../..",
+    "standardize-docs": "node standardize-docs.js"
   },
   "workspaces": [
     "packages/*",

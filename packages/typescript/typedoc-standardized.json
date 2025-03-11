@@ -1,0 +1,41 @@
+{
+  "name": "Daytona TypeScript SDK",
+  "includeVersion": true,
+  "readme": "none",
+  
+  "$schema": "https://typedoc-plugin-markdown.org/schema.json",
+  "entryPoints": ["./src/*.ts", "./src/errors/*.ts"],
+  "exclude": ["src/index.ts"],
+  "out": "../../docs/typescript-sdk",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "excludeNotDocumented": false,
+  "plugin": ["typedoc-plugin-markdown", "./hooks/typedoc-custom.mjs", "typedoc-plugin-merge-modules"],
+  "theme": "markdown",
+  "sort": ["static-first", "alphabetical"],
+
+  "membersWithOwnFile": [],
+  "flattenOutputFiles": true,
+
+  "hidePageHeader": true,
+  "hideBreadcrumbs": true,
+  "hidePageTitle": true,
+  "hideGroupHeadings": true,
+  "useCodeBlocks": true,
+  "expandObjects": true,
+  "expandParameters": true,
+  "indexFormat": "list",
+  "parametersFormat": "list",
+  "interfacePropertiesFormat": "list",
+  "classPropertiesFormat": "list",
+  "enumMembersFormat": "list",
+  "propertyMembersFormat": "list",
+  "typeDeclarationFormat": "list",
+  "propertiesFormat": "list",
+  "tableColumnSettings": {
+    "hideSources": true
+  },
+
+  "mergeModulesMergeMode": "module"
+} 
