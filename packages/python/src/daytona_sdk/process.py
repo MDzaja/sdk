@@ -42,7 +42,6 @@ from daytona_api_client import (
     Command,
     CreateSessionRequest,
     ExecuteRequest,
-    ExecuteResponse,
     Session,
     SessionExecuteRequest,
     SessionExecuteResponse,
@@ -53,6 +52,9 @@ from daytona_sdk._utils.errors import intercept_errors
 from .code_toolbox.sandbox_python_code_toolbox import SandboxPythonCodeToolbox
 from .common.code_run_params import CodeRunParams
 from .protocols import SandboxInstance
+from .charts import Chart
+import json
+from .common.execute_response import ExecuteResponse, ExecutionArtifacts
 
 
 class Process:
